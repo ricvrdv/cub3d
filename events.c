@@ -7,7 +7,7 @@ int handle_keypress(int keycode, t_game *game)
     player = &game->player;
     if (keycode == KEY_ESC)
     {
-        // Cleanup and exit
+        exit_game(game);
     }
     else if (keycode == KEY_W)
         player->key_w = true;
@@ -24,7 +24,7 @@ int handle_keypress(int keycode, t_game *game)
     return (0);
 }
 
-int handle_keyrelease(int keycode, t_game *game)
+int handle_keyrelease(int keycode, t_player *player)
 {
     if (keycode == KEY_W)
         player->key_w = false;
@@ -43,7 +43,7 @@ int handle_keyrelease(int keycode, t_game *game)
 
 int exit_game(t_game *game)
 {
-    if (game->img_buffer.img_ptr)
+    if (game->img.img_ptr)
         mlx_destroy_image(game->mlx_ptr, game->img.img_ptr);
     if (game->win_ptr)
         mlx_destroy_window(game->mlx_ptr, game->win_ptr);
