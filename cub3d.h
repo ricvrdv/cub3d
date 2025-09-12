@@ -41,12 +41,25 @@ typedef struct  s_player
     bool    key_right;
 } t_player;
 
+typedef struct  s_paths
+{
+    char    *north;
+    char    *south;
+    char    *west;
+    char    *east;
+} t_paths;
+
 typedef struct  s_game
 {
     void        *mlx_ptr;
     void        *win_ptr;
     t_img       img;
+    t_img       north_texture;
+    t_img       south_texture;
+    t_img       west_texture;
+    t_img       east_texture;
     t_player    player;
+    t_paths     texture_paths;
 } t_game;
 
 void    init_game(t_game *game);
