@@ -22,4 +22,5 @@ void    init_game(t_game *game)
         &game->img.endian);
     game->img.width = WIN_WIDTH;
     game->img.height = WIN_HEIGHT;
+    load_textures(game);
 }
