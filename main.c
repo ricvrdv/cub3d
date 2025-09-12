@@ -9,7 +9,7 @@ int main(int argc, char **argv)
     {
         //return (1);
     }
-    memset(&game, 0, sizeof(t_game));
+    ft_memset(&game, 0, sizeof(t_game));
     init_game(&game);
     setup_hooks(&game);
     mlx_loop(game.mlx_ptr);
