@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ddo-carm <ddo-carm@student.42.fr>          +#+  +:+       +#+         #
+#    By: ddo-carm <ddo-carm@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/10 17:05:56 by ddo-carm          #+#    #+#              #
-#    Updated: 2025/09/15 17:52:25 by ddo-carm         ###   ########.fr        #
+#    Updated: 2025/09/15 21:57:34 by ddo-carm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,6 @@ SRC = $(SRCS_D)/main.c \
 #  \      |                                               |     /
 #  /      |_______________________________________________|     \ 
 # /__________)                                        (__________\ 
-@make -C $(LIBFT_D)	
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
@@ -95,6 +94,7 @@ clean:
 fclean: clean
 	@$(RM) $(NAME) $(NAME_BONUS) $(MINILIBX)
 	@make fclean -C $(LIBFT_D)
+	@rm -rf $(MINILIBX_D)
 	@echo "$(BMAG)✨Program removed $(BGRN)successfully✨"
 
 #remake
