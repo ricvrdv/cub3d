@@ -61,6 +61,12 @@ typedef struct  s_game
 void    init_game(t_game *game);
 char    *input_checker(t_game *game, char *input);
 
+//parser
+int     parser(char *line);
+
+//color_parser
+
+
 // events
 int     handle_keypress(int keysym, t_game *game);
 int     handle_keyrelease(int keysym, t_player *player);
