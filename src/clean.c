@@ -1,6 +1,6 @@
-#include "cub3d.h"
+#include "../inc/cub3d.h"
 
-static void destroy_textures(t_game *game)
+/*static void destroy_textures(t_game *game)
 {
     if (game->textures.north.img_ptr)
         mlx_destroy_image(game->mlx_ptr, game->textures.north.img_ptr);
@@ -10,7 +10,7 @@ static void destroy_textures(t_game *game)
         mlx_destroy_image(game->mlx_ptr, game->textures.west.img_ptr);
     if (game->textures.east.img_ptr)
         mlx_destroy_image(game->mlx_ptr, game->textures.east.img_ptr);
-}
+}*/
 
 void clean_game(t_game *game)
 {
@@ -18,8 +18,8 @@ void clean_game(t_game *game)
         return ;
     if (game->img.img_ptr)
         mlx_destroy_image(game->mlx_ptr, game->img.img_ptr);
-    if (game->textures)
-        destroy_textures(game);
+    //if (game->textures)
+    //    destroy_textures(game);
     if (game->win_ptr)
         mlx_destroy_window(game->mlx_ptr, game->win_ptr);
     if (game->mlx_ptr)

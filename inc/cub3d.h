@@ -12,7 +12,8 @@
 # include <stdbool.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
-# include "./minilibx-linux/mlx.h"
+# include "libft/libft.h"
+# include "minilibx_linux/mlx.h"
 
 typedef struct  s_img
 {
@@ -74,6 +75,6 @@ void    clean_game(t_game *game);
 void    setup_hooks(t_game *game);
 void    load_textures(t_game *game);
 void    put_pixel(t_img *img, int x, int y, int color);
-void    handle_error(t_game *game, const char *message);
+void    handle_error(t_game *game, char *message);
 
 #endif

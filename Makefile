@@ -6,7 +6,7 @@
 #    By: ddo-carm <ddo-carm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/10 17:05:56 by ddo-carm          #+#    #+#              #
-#    Updated: 2025/09/11 16:46:44 by ddo-carm         ###   ########.fr        #
+#    Updated: 2025/09/15 17:25:45 by rjesus-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,20 @@
 
 
 NAME = cub3D
-MINILIBX_D = ./minilibx_linux
+MINILIBX_D = ./inc/minilibx_linux
 MINILIBX = $(MINILIBX_D)/libmlx.a
-LIBFT_D = ./libft
+LIBFT_D = ./inc/libft
 LIBFT = $(LIBFT_D)/libft.a
 SRCS_D = ./src
 INCLUDES = ./inc
 
 #source files
 SRC = $(SRCS_D)/main.c \
+	$(SRCS_D)/init.c \
+	$(SRCS_D)/render.c \
+	$(SRCS_D)/events.c \
+	$(SRCS_D)/clean.c \
+	$(SRCS_D)/utils.c
 
 #		   ________________________________________________
 #  _______|                                               |_______
@@ -95,7 +100,6 @@ fclean: clean
 #remake
 re: fclean
 	make all
-	make bonus
 	@echo "$(BMAG)✨Re-compile was $(BGRN)successfull✨"
 
 #          ________________________________________________

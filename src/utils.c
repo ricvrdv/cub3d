@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../inc/cub3d.h"
 
 void    setup_hooks(t_game *game)
 {
@@ -27,8 +27,8 @@ void    load_textures(t_game *game)
     texture = &game->textures;
     //texture->no_path = "textures/north.xpm";
     //texture->so_path = "textures/south.xpm";
-    //texture->we_path = "textures/west.xpm";
-    //texture->ea_path = "textures/east.xpm";
+    // texture->we_path = "textures/west.xpm";
+    // texture->ea_path = "textures/east.xpm";
     load_from_path(game, &texture->north, texture->no_path);
     load_from_path(game, &texture->south, texture->so_path);
     load_from_path(game, &texture->west, texture->we_path);
@@ -45,7 +45,7 @@ void    put_pixel(t_img *img, int x, int y, int color)
     *(unsigned int *)dst = color;
 }
 
-void    handle_error(t_game *game, const char *message)
+void    handle_error(t_game *game, char *message)
 {
     ft_putstr_fd("Error\n", STDERR_FILENO);
     if (message)

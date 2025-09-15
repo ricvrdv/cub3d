@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../inc/cub3d.h"
 
 int handle_keypress(int keysym, t_game *game)
 {
@@ -7,7 +7,7 @@ int handle_keypress(int keysym, t_game *game)
     player = &game->player;
     if (keysym == XK_Escape)
     {
-        exit_game(game);
+        clean_game(game);
     }
     else if (keysym == XK_W || keysym == XK_w)
         player->key_w = true;
