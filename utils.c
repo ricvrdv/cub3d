@@ -34,3 +34,13 @@ void    load_textures(t_game *game)
     load_from_path(game, &texture->west, texture->we_path);
     load_from_path(game, &texture->east, texture->ea_path);
 }
+
+void    put_pixel(t_img *img, int x, int y, int color)
+{
+    char    *dst;
+
+    if (x < 0 || y < 0 || x >= img->width || y >= img->height)
+        return ;
+    dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+    *(unsigned int *)dst = color;
+}

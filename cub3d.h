@@ -73,5 +73,6 @@ void    clean_game(t_game *game);
 // utils
 void    setup_hooks(t_game *game);
 void    load_textures(t_game *game);
+void    put_pixel(t_img *img, int x, int y, int color);
 
 #endif
