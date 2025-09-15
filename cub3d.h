@@ -18,6 +18,8 @@
 # include <string.h>
 # include <math.h>
 # include <stdbool.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "./minilibx-linux/mlx.h"
 
 typedef struct  s_img
