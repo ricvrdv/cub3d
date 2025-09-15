@@ -5,7 +5,7 @@ void    setup_hooks(t_game *game)
     mlx_hook(game->win_ptr, KeyPress, KeyPressMask, handle_keypress, game);
     mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask, handle_keyrelease, &game->player);
     mlx_hook(game->win_ptr, DestroyNotify, NoEventMask, close_window, game);
-    mlx_loop_hook(game->mlx_ptr, main_loop, game);
+    mlx_loop_hook(game->mlx_ptr, render_frame, game);
 }
 
 static void load_from_path(t_game *game, t_img *texture, char *path)

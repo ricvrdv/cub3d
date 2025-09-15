@@ -65,7 +65,7 @@ int     handle_keyrelease(int keysym, t_player *player);
 int     close_window(t_game *game);
 
 // render
-int     main_loop(t_game *game);
+int     render_frame(t_game *game);
 
 // clean
 void    clean_game(t_game *game);
