@@ -4,14 +4,6 @@
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
 
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
-# define KEY_ESC 65307
-
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
@@ -68,8 +60,8 @@ typedef struct  s_game
 void    init_game(t_game *game);
 
 // events
-int     handle_keypress(int keycode, t_game *game);
-int     handle_keyrelease(int keycode, t_player *player);
+int     handle_keypress(int keysym, t_game *game);
+int     handle_keyrelease(int keysym, t_player *player);
 
 // render
 int     main_loop(t_game *game);

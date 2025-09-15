@@ -1,42 +1,42 @@
 #include "cub3d.h"
 
-int handle_keypress(int keycode, t_game *game)
+int handle_keypress(int keysym, t_game *game)
 {
     t_player    *player;
 
     player = &game->player;
-    if (keycode == KEY_ESC)
+    if (keysym == XK_Escape)
     {
         exit_game(game);
     }
-    else if (keycode == KEY_W)
+    else if (keysym == XK_W || keysym == XK_w)
         player->key_w = true;
-    else if (keycode == KEY_A)
+    else if (keysym == XK_A || keysym == XK_a)
         player->key_a = true;
-    else if (keycode == KEY_S)
+    else if (keysym == XK_S || keysym == XK_s)
         player->key_s = true;
-    else if (keycode == KEY_D)
+    else if (keysym == XK_D || keysym == XK_d)
         player->key_d = true;
-    else if (keycode == KEY_LEFT)
+    else if (keysym == XK_Left)
         player->key_left = true;
-    else if (keycode == KEY_RIGHT)
+    else if (keysym == XK_Right)
         player->key_right = true;
     return (0);
 }
 
-int handle_keyrelease(int keycode, t_player *player)
+int handle_keyrelease(int keysym, t_player *player)
 {
-    if (keycode == KEY_W)
+    if (keysym == XK_W || keysym == XK_w)
         player->key_w = false;
-    else if (keycode == KEY_A)
+    else if (keysym == XK_A || keysym == XK_a)
         player->key_a = false;
-    else if (keycode == KEY_S)
+    else if (keysym == XK_S || keysym == XK_s)
         player->key_s = false;
-    else if (keycode == KEY_D)
+    else if (keysym == XK_D || keysym == XK_d)
         player->key_d = false;
-    else if (keycode == KEY_LEFT)
+    else if (keysym == XK_Left)
         player->key_left = false;
-    else if (keycode == KEY_RIGHT)
+    else if (keysym == XK_Right)
         player->key_right = false;
     return (0);
 }
