@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddo-carm <ddo-carm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ddo-carm <ddo-carm@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:01:55 by ddo-carm          #+#    #+#             */
-/*   Updated: 2025/04/18 15:49:31 by ddo-carm         ###   ########.fr       */
+/*  Updated:    2025/09/15 22:56:45                                             */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <fcntl.h>
+# include "gnl/get_next_line.h"
+# include "gnl/get_next_line_bonus.h"
+# include "printf/ft_printf.h"
+# include "extras/extras.h"
+# include "dprintf/ft_dprintf.h"
 
 typedef struct s_list
 {

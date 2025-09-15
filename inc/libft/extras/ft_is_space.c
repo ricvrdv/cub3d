@@ -6,13 +6,13 @@
 /*   By: ddo-carm <ddo-carm@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:34:08 by ddo-carm          #+#    #+#             */
-/*   Updated: 2025/02/20 15:34:08 by ddo-carm         ###   ########.fr       */
+/*  Updated:    2025/09/15 22:36:55                                             */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "extras.h"
 
-//info   --> Check it char is space
+//info   --> Check if char is space
 //c      --> Char to check
 //return --> Success (1)
 //return --> Failure (0)

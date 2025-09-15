@@ -59,6 +59,7 @@ typedef struct  s_game
 
 // init
 void    init_game(t_game *game);
+char    *input_checker(t_game *game, char *input);
 
 // events
 int     handle_keypress(int keysym, t_game *game);

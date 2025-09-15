@@ -18,3 +18,39 @@ void    init_game(t_game *game)
     game->img.height = WIN_HEIGHT;
     load_textures(game);
 }
+
+//info --> check if a string is numbers, letters or symbols
+
+int	ft_str_isalnum(char *c)
+{
+	int	i;
+
+	i = 0;
+	while (c[i])
+	{
+		if (c[i] >= 33 && c[i] <= 126)
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+char *input_checker(t_game *game, char *input)
+{
+	char	**split;
+
+	split = ft_split(input, '.');
+	if (!split[1] || !ft_str_isalnum(split[0]))
+	{
+		handle_error(game, "File must be .cub type\n");
+		return (free_arrays((void **)split), NULL);
+	}
+	if (ft_strncmp(split[1], "cub", 4) == 0)
+		return (free_arrays((void **)split), input);
+	else
+	{
+		handle_error(game, "File must be .cub type\n");
+		return (free_arrays((void **)split), NULL);
+	}
+}

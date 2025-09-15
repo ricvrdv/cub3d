@@ -4,11 +4,12 @@ int main(int argc, char **argv)
 {
     t_game  game;
 
-    (void)argv;
     if (argc != 2)
     {
-        //return (1);
+        handle_error(&game, "This program requires a single .cub file as input\n");
+        return (1);
     }
+    input_checker(&game, argv[1]);
     ft_memset(&game, 0, sizeof(t_game));
     init_game(&game);
     setup_hooks(&game);
