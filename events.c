@@ -40,3 +40,9 @@ int handle_keyrelease(int keysym, t_player *player)
         player->key_right = false;
     return (0);
 }
+
+int close_window(t_game *game)
+{
+    clean_game(game);
+    exit(EXIT_SUCCESS);
+}

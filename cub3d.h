@@ -62,13 +62,16 @@ void    init_game(t_game *game);
 // events
 int     handle_keypress(int keysym, t_game *game);
 int     handle_keyrelease(int keysym, t_player *player);
+int     close_window(t_game *game);
 
 // render
 int     main_loop(t_game *game);
 
+// clean
+void    clean_game(t_game *game);
+
 // utils
 void    setup_hooks(t_game *game);
 void    load_textures(t_game *game);
-int     exit_game(t_game *game);
 
 #endif
