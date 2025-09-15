@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extras.h                                           :+:      :+:    :+:   */
+/*   ft_str_isalnum.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddo-carm <ddo-carm@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/18 15:39:10 by ddo-carm          #+#    #+#             */
-/*  Updated:    2025/09/15 23:03:49                                             */
+/*   Created: 2025/09/15 23:03:24 by ddo-carm          #+#    #+#             */
+/*  Updated:    2025/09/15 23:03:53                                             */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXTRAS_H
-# define EXTRAS_H
+#include "extras.h"
 
-# include "../libft.h"
+//info --> check if a string is numbers, letters or symbols
 
-void	close_pipe(int *fd);
-void	errors(char *message, char *complete, int if_exit);
-void	free_arrays(void **array);
-void	free_matrix(void ***matrix);
-int		ft_atoi_base(const char *str, int base);
-long	ft_atol(const char *nptr);
-int		ft_is_space(char c);
-int		ft_is_directory(const char *path);
-int		ft_str_isalnum(char *c);
+int	ft_str_isalnum(char *c)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (c[i])
+	{
+		if (c[i] >= 33 && c[i] <= 126)
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}

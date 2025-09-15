@@ -19,23 +19,6 @@ void    init_game(t_game *game)
     load_textures(game);
 }
 
-//info --> check if a string is numbers, letters or symbols
-
-int	ft_str_isalnum(char *c)
-{
-	int	i;
-
-	i = 0;
-	while (c[i])
-	{
-		if (c[i] >= 33 && c[i] <= 126)
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
 char *input_checker(t_game *game, char *input)
 {
 	char	**split;
