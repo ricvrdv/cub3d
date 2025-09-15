@@ -68,7 +68,6 @@ void    init_game(t_game *game);
 // events
 int     handle_keypress(int keycode, t_game *game);
 int     handle_keyrelease(int keycode, t_player *player);
-int     exit_game(t_game *game);
 
 // render
 int     main_loop(t_game *game);
@@ -76,5 +75,6 @@ int     main_loop(t_game *game);
 // utils
 void    setup_hooks(t_game *game);
 void    load_textures(t_game *game);
+int     exit_game(t_game *game);
 
 #endif

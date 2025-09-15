@@ -34,3 +34,19 @@ void    load_textures(t_game *game)
     load_from_path(game, &texture->west, texture->we_path);
     load_from_path(game, &texture->east, texture->ea_path);
 }
+
+int exit_game(t_game *game)
+{
+    if (!game)
+        return (1);
+    if (game->img.img_ptr)
+        mlx_destroy_image(game->mlx_ptr, game->img.img_ptr);
+    if (game->win_ptr)
+        mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+    if (game->mlx_ptr)
+    {
+        mlx_destroy_display(game->mlx_ptr);
+        free(game->mlx_ptr);
+    }
+    exit(0);
+}

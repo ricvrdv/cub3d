@@ -40,17 +40,3 @@ int handle_keyrelease(int keycode, t_player *player)
         player->key_right = false;
     return (0);
 }
-
-int exit_game(t_game *game)
-{
-    if (game->img.img_ptr)
-        mlx_destroy_image(game->mlx_ptr, game->img.img_ptr);
-    if (game->win_ptr)
-        mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-    if (game->mlx_ptr)
-    {
-        mlx_destroy_display(game->mlx_ptr);
-        free(game->mlx_ptr);
-    }
-    exit(0);
-}
