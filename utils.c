@@ -44,3 +44,12 @@ void    put_pixel(t_img *img, int x, int y, int color)
     dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
     *(unsigned int *)dst = color;
 }
+
+void    handle_error(t_game *game, const char *message)
+{
+    ft_putstr_fd("Error\n", STDERR_FILENO);
+    if (message)
+        ft_putstr_fd(message, STDERR_FILENO);
+    clean_game(game);
+    exit(EXIT_FAILURE);
+}
