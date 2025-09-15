@@ -83,12 +83,12 @@ all: $(NAME)
 
 #compile the lib
 $(NAME): $(OBJ) $(EXT_OBJ) $(PRINTF_OBJ) $(GNL_OBJ) $(DPRINTF_OBJ)
-	$(AR) $(NAME) $(OBJ) $(EXT_OBJ) $(PRINTF_OBJ) $(GNL_OBJ) $(DPRINTF_OBJ)
+	@$(AR) $(NAME) $(OBJ) $(EXT_OBJ) $(PRINTF_OBJ) $(GNL_OBJ) $(DPRINTF_OBJ)
 	@echo "$(BGRN)✨Compilation completed✨"
 
 #compile .o files
 %.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(BMAG)Compiling..."
 
 #          ________________________________________________
@@ -100,13 +100,13 @@ $(NAME): $(OBJ) $(EXT_OBJ) $(PRINTF_OBJ) $(GNL_OBJ) $(DPRINTF_OBJ)
 
 #remove .o
 clean:
-	$(RM) $(OBJ) $(EXT_OBJ) $(PRINTF_OBJ) $(GNL_OBJ) $(DPRINTF_OBJ)
+	@$(RM) $(OBJ) $(EXT_OBJ) $(PRINTF_OBJ) $(GNL_OBJ) $(DPRINTF_OBJ)
 	@echo "$(BMAG)✨Objects removed $(BGRN)successfully✨"
 
 
 #clean and remove
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	@echo "$(BMAG)✨Program removed $(BGRN)successfully✨"
 	
 #remake
