@@ -68,7 +68,7 @@ typedef struct  s_game
 
 // init
 void    init_game(t_game *game);
-char    *input_checker(t_game *game, char *input);
+int     input_checker(char *input);
 
 //parser
 int     skip_spaces(char *line);

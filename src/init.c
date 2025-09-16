@@ -19,21 +19,24 @@ void    init_game(t_game *game)
     load_textures(game);
 }
 
-char *input_checker(t_game *game, char *input)
+int input_checker(char *input)
 {
 	char	**split;
 
 	split = ft_split(input, '.');
 	if (!split[1] || !ft_str_isalnum(split[0]))
 	{
-		handle_error(game, "File must be .cub type\n");
-		return (free_arrays((void **)split), NULL);
+        free_arrays((void **)split);
+        return (0);
 	}
 	if (ft_strncmp(split[1], "cub", 4) == 0)
-		return (free_arrays((void **)split), input);
+    {
+        free_arrays((void **)split);
+        return (1);
+    }
 	else
 	{
-		handle_error(game, "File must be .cub type\n");
-		return (free_arrays((void **)split), NULL);
+		free_arrays((void **)split);
+        return (0);
 	}
 }
