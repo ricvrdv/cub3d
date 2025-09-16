@@ -6,7 +6,7 @@
 /*   By: ddo-carm <ddo-carm@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:49:36 by ddo-carm          #+#    #+#             */
-/*   Updated: 2024/12/07 13:49:36 by ddo-carm         ###   ########.fr       */
+/*  Updated:    2025/09/16 17:49:46                                             */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_join_free(char *text, char *buffer)
 {
 	char	*new_text;
 
-	new_text = ft_strjoin(text, buffer);
+	new_text = ft_strjoin_gnl_bonus(text, buffer);
 	if (!new_text)
 		return (free(buffer), free(text), NULL);
 	free(text);

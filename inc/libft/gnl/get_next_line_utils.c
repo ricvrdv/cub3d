@@ -6,13 +6,13 @@
 /*   By: ddo-carm <ddo-carm@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:57:19 by ddo-carm          #+#    #+#             */
-/*   Updated: 2024/11/08 23:57:19 by ddo-carm         ###   ########.fr       */
+/*  Updated:    2025/09/16 17:49:05                                             */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
 	size_t	len_s1;
 	size_t	len_s2;
@@ -37,30 +37,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (res);
 }
 
-char	*ft_strchr(const char *s, int c)
-{
-	return (ft_memchr(s, c, ft_strlen_until(s, '\0') + 1));
-}
-
-void	*ft_memchr(const void *s, int c, size_t n)
-{
-	size_t	i;
-	char	c_c;
-	char	*s_c;
-
-	i = 0;
-	c_c = (char)c;
-	s_c = (char *)s;
-	while (i < n)
-	{
-		if (s_c[i] == c_c)
-			return ((void *)&s_c[i]);
-		else
-			i++;
-	}
-	return (NULL);
-}
-
 size_t	ft_strlen_until(const char *s, char c)
 {
 	size_t	i;
@@ -71,31 +47,4 @@ size_t	ft_strlen_until(const char *s, char c)
 		i++;
 	}
 	return (i);
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*ptr;
-	size_t	total;
-	size_t	i;
-	char	*ptr_c;
-
-	if ((nmemb == 0) || (size == 0))
-	{
-		nmemb = 1;
-		size = 0;
-	}
-	total = (nmemb * size);
-	ptr = malloc(total);
-	if (!ptr)
-		return (NULL);
-	ptr_c = (char *)ptr;
-	i = 0;
-	while (i < total)
-	{
-		ptr_c[i] = '\0';
-		i++;
-	}
-	ptr = (void *)ptr_c;
-	return (ptr);
 }
