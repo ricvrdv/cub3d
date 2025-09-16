@@ -48,6 +48,14 @@ typedef struct  s_textures
     t_img   east;
 } t_textures;
 
+typedef struct s_colors
+{
+    char    id;
+    int     r_code;
+    int     g_code;
+    int     b_code;
+}   t_colors;
+
 typedef struct  s_game
 {
     void        *mlx_ptr;
@@ -55,11 +63,20 @@ typedef struct  s_game
     t_img       img;
     t_player    player;
     t_textures  textures;
+    t_colors    colors;
 } t_game;
 
 // init
 void    init_game(t_game *game);
 int     input_checker(char *input);
+
+//parser
+int     skip_spaces(char *line);
+int     handle_line(t_game *game, char *line);
+int     parser(t_game *game, char *filename);
+
+//color_parser
+void    color_parser(t_game *game, char *line);
 
 // events
 int     handle_keypress(int keysym, t_game *game);

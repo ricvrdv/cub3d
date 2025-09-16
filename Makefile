@@ -6,7 +6,7 @@
 #    By: ddo-carm <ddo-carm@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/10 17:05:56 by ddo-carm          #+#    #+#              #
-#    Updated: 2025/09/15 21:57:34 by ddo-carm         ###   ########.fr        #
+#    Updated: 2025/09/16 17:25:58 by ddo-carm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRC = $(SRCS_D)/main.c \
 	$(SRCS_D)/init.c \
 	$(SRCS_D)/render.c \
 	$(SRCS_D)/events.c \
+	$(SRCS_D)/parser.c \
+	$(SRCS_D)/color_parser.c \
 	$(SRCS_D)/clean.c \
 	$(SRCS_D)/utils.c
 
