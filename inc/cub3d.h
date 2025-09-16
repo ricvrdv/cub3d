@@ -76,7 +76,7 @@ int     handle_line(t_game *game, char *line);
 int     parser(t_game *game, char *filename);
 
 //color_parser
-
+void    color_parser(t_game *game, char *line);
 
 // events
 int     handle_keypress(int keysym, t_game *game);
