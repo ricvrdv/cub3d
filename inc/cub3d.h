@@ -63,7 +63,8 @@ typedef struct  s_game
     t_img       img;
     t_player    player;
     t_textures  textures;
-    t_colors    colors;
+    t_colors    floor;
+    t_colors    ceiling;
 } t_game;
 
 // init
