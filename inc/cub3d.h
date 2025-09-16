@@ -71,7 +71,9 @@ void    init_game(t_game *game);
 char    *input_checker(t_game *game, char *input);
 
 //parser
-int     parser(char *line);
+int     skip_spaces(char *line);
+int     handle_line(t_game *game, char *line);
+int     parser(t_game *game, char *filename);
 
 //color_parser
 
