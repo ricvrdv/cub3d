@@ -79,6 +79,9 @@ int     parser(t_game *game, char *filename);
 //color_parser
 void    color_parser(t_game *game, char *line);
 
+//texture_parser
+void    texture_parser(t_game *game, char *line);
+
 // events
 int     handle_keypress(int keysym, t_game *game);
 int     handle_keyrelease(int keysym, t_player *player);
