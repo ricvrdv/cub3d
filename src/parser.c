@@ -28,21 +28,21 @@ int handle_line(t_game *game, char *line)
 		texture_parser(game, line + i);
 	else if (line[i] == '1')
 	{
-		if (!map_parser(game, line))
-			return (0);
+		// map_parser(game, line);
+		ft_printf("In progress...");
 		return (1);
 	}
 	return (0);
 }
 
-int parser(t_game *game, char *filename)
+void parser(t_game *game, char *filename)
 {
 	int fd;
 	char *line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (handle_error(game, "Opening file failed\n"), 1);
+		return (handle_error(game, "Opening file failed\n"));
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -56,5 +56,5 @@ int parser(t_game *game, char *filename)
 		free(line);
 	}
 	close(fd);
-	return (0);
+	return ;
 }
