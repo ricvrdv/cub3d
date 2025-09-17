@@ -18,6 +18,7 @@ int main(int argc, char **argv)
     init_game(&game);
     setup_hooks(&game);
     mlx_loop(game.mlx_ptr);
+    parser(&game, argv[1]);
     printf("Work in progress...");
     return (0);
 }

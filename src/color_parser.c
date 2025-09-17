@@ -1,6 +1,6 @@
 #include "../inc/cub3d.h"
 
-static int rgb_checker(t_game *game, char **line, int index)
+static int rgb_checker(char **line, int index)
 {
 	int value;
 
@@ -36,11 +36,11 @@ void color_parser(t_game *game, char *line)
 		ft_dprintf(2, "Error\nUnknown color identifier\n");
 		return ;
 	}
-	target.id = *line;
+	target->id = *line;
 	line++;
 	while (ft_is_space(*line))
 		line++;
-	target->r_code = rgb_checker(game, &line, 0);
-	target->g_code = rgb_checker(game, &line, 1);
-	target->b_code = rgb_checker(game, &line, 2);
+	target->r_code = rgb_checker(&line, 0);
+	target->g_code = rgb_checker(&line, 1);
+	target->b_code = rgb_checker(&line, 2);
 }
