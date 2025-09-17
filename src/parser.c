@@ -28,7 +28,8 @@ int handle_line(t_game *game, char *line)
 		texture_parser(game, line + i);
 	else if (line[i] == '1')
 	{
-		map_parser(game, line);
+		if (!map_parser(game, line))
+			return (0);
 		return (1);
 	}
 	return (0);
