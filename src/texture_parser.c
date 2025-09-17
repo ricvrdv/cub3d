@@ -8,7 +8,7 @@ static int	set_texture_path(t_game *game, char *line, const char *id, char **tar
 		while (ft_is_space(*line))
 			line++;
 		if (*line == '\0')
-			handle_error (game, "Missing texture path\n");
+			ft_dprintf(2, "Error\nMissing texture path\n");
 		*target = ft_strdup(line);
 		return (0);
 	}
@@ -17,13 +17,14 @@ static int	set_texture_path(t_game *game, char *line, const char *id, char **tar
 
 void	texture_parser(t_game *game, char *line)
 {
-	int match;
-
-	match = 0;
-	set_texture_path(game, line, "NO", &game->textures.no_path);
-	set_texture_path(game, line, "SO", &game->textures.so_path);
-	set_texture_path(game, line, "WE", &game->textures.we_path);
-	set_texture_path(game, line, "EA", &game->textures.ea_path);
-	if (match == 1)
-		handle_error(game, "Unknown texture identifier\n");
+	if (set_texture_path(game, line, "NO", &game->textures.no_path) == 0)
+		return ;
+	else if (set_texture_path(game, line, "SO", &game->textures.so_path) == 0)
+		return ;
+	else if (set_texture_path(game, line, "WE", &game->textures.we_path) == 0)
+		return ;
+	else if (set_texture_path(game, line, "EA", &game->textures.ea_path) == 0)
+		return ;
+	else
+		ft_dprintf(2, "Error\nUnknown texture identifier\n");
 }

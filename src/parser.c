@@ -34,14 +34,14 @@ int handle_line(t_game *game, char *line)
 	return (0);
 }
 
-int parser(t_game *game, char *filename)
+void parser(t_game *game, char *filename)
 {
 	int fd;
 	char *line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (handle_error(game, "Opening file failed\n"), 1);
+		return (handle_error(game, "Opening file failed\n"));
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -55,5 +55,5 @@ int parser(t_game *game, char *filename)
 		free(line);
 	}
 	close(fd);
-	return (0);
+	return ;
 }
