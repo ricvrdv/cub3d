@@ -2,9 +2,14 @@
 
 static int	set_texture_path(char *line, const char *id, char **target)
 {
-	if (ft_strncmp(line, id, 3) == 0)
+	if (ft_strncmp(line, id, 2) == 0)
 	{
 		line += 2;
+		if (!ft_is_space(*line))
+		{
+			ft_dprintf(2, "Error\nUnknown texture identifier\n");
+			return (1);
+		}
 		while (ft_is_space(*line))
 			line++;
 		if (*line == '\0')

@@ -11,7 +11,7 @@ static int rgb_checker(char **line, int index)
 	{
 		if (**line != ',')
 			return (ft_dprintf(2, "Error\nInvalid color format\n"), -1);
-		(**line)++;
+		(*line)++;
 	}
 	else
 	{
