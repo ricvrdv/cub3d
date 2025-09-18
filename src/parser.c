@@ -29,7 +29,7 @@ int handle_line(t_game *game, char *line)
 	else if (line[i] == '1')
 	{
 		// map_parser(game, line);
-		ft_printf("In progress...");
+		ft_printf("In progress...\n");
 		return (1);
 	}
 	return (0);

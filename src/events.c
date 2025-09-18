@@ -6,9 +6,7 @@ int handle_keypress(int keysym, t_game *game)
 
     player = &game->player;
     if (keysym == XK_Escape)
-    {
-        clean_game(game);
-    }
+        close_window(game);
     else if (keysym == XK_W || keysym == XK_w)
         player->key_w = true;
     else if (keysym == XK_A || keysym == XK_a)
