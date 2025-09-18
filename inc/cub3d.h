@@ -73,7 +73,7 @@ int     input_checker(char *input);
 
 //parser
 int     skip_spaces(char *line);
-int     handle_line(t_game *game, char *line);
+int     handle_line(t_game *game, int fd, char *line);
 void    parser(t_game *game, char *filename);
 
 //color_parser
@@ -81,6 +81,9 @@ void    color_parser(t_game *game, char *line);
 
 //texture_parser
 void	texture_parser(t_game *game, char *line);
+
+// map_parser
+int     map_parser(t_game *game, int fd, char *line);
 
 // events
 int     handle_keypress(int keysym, t_game *game);

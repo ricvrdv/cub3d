@@ -15,7 +15,7 @@ int skip_spaces(char *line)
 	return (-1);
 }
 
-int handle_line(t_game *game, char *line)
+int handle_line(t_game *game, int fd, char *line)
 {
 	int	i;
 
@@ -28,7 +28,8 @@ int handle_line(t_game *game, char *line)
 		texture_parser(game, line + i);
 	else if (line[i] == '1')
 	{
-		// map_parser(game, line);
+		if (!map_parser(game, fd, line)) // or line + i?
+			return (-1);
 		ft_printf("In progress...\n");
 		return (1);
 	}
@@ -38,22 +39,33 @@ int handle_line(t_game *game, char *line)
 void parser(t_game *game, char *filename)
 {
 	int fd;
+	int	ret;
 	char *line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (handle_error(game, "Opening file failed\n"));
-	while (1)
+	line = get_next_line(fd);
+	while (line)
 	{
-		line = get_next_line(fd);
-		if (!line)
-    		break ;
-		if (handle_line(game, line))
+		//if (!line)
+    	//	break ;
+		ret = handle_line(game, fd, line);
+		if (ret)
 		{
 			free(line);
+			if (ret == -1)
+			{
+				close(fd);
+				handle_error(game, "Map is invalid.\n");
+			}
 			break ;
 		}
-		free(line);
+		else
+		{
+			free(line);
+			line = get_next_line(fd);
+		}
 	}
 	close(fd);
 	return ;

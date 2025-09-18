@@ -26,7 +26,7 @@ static int is_map_line(const char *line)
     return (has_map_content);
 }
 
-static void process_map_line(t_game *game, int y, char *line, int width)
+/*static void process_map_line(t_game *game, int y, char *line, int width)
 {
     int x;
 
@@ -87,31 +87,35 @@ static int  map_to_array(t_game *game, t_list *map_lines, int width, int height)
     game->map_height = height;
     ft_lstclear(&map_lines, NULL);
     return (1);
-}
+}*/
 
 int map_parser(t_game *game, int fd, char *line)
 {
     t_list *map_lines;
     int     max_width; // or just use game->map.width; that was init to 0 already
 
+    (void)game;
     map_lines = NULL;
-    max_width = 0;
-    ft_lstadd_back(&map_lines, ft_lstnew(line));
-    max_width = ft_max(max_width, (int)ft_strlen(line));
+    max_width = (int)ft_strlen(line);
+    ft_lstadd_back(&map_lines, ft_lstnew(ft_strdup(line)));
+    free(line);
     line = get_next_line(fd);
     while (line)
     {
         if (!is_map_line(line))
         {
             free(line);
-            // Print error
+            ft_lstclear(&map_lines, free);
+            //close(fd);
             return (0);
         }
-        ft_lstadd_back(&map_lines, ft_lstnew(line));
+        ft_lstadd_back(&map_lines, ft_lstnew(ft_strdup(line)));
         max_width = ft_max(max_width, (int)ft_strlen(line));
         line = get_next_line(fd);
     }
-    if (!map_to_array(game, map_lines, max_width, ft_lstsize(map_lines)))
-        return (0);
+    free(line);
+    ft_lstclear(&map_lines, free);
+    //if (!map_to_array(game, map_lines, max_width, ft_lstsize(map_lines)))
+    //    return (0);
     return (1);
 }
