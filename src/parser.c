@@ -63,9 +63,11 @@ void parser(t_game *game, char *filename)
 		{
 			if (ret == -1)
 			{
+				free(clean_line);
 				close(fd);
 				handle_error(game, "Map is invalid.\n");
 			}
+			free(clean_line);
 			break ;
 		}
 		else

@@ -100,7 +100,7 @@ int map_parser(t_game *game, int fd, char *line)
     map_lines = NULL;
     max_width = (int)ft_strlen(line);
     ft_lstadd_back(&map_lines, ft_lstnew(ft_strdup(line)));
-    free(line);
+    //free(line);
     line = get_next_line(fd);
     while (line)
     {
@@ -110,6 +110,14 @@ int map_parser(t_game *game, int fd, char *line)
         {
             free(clean_line);
             ft_lstclear(&map_lines, free);
+            line = get_next_line(fd);
+            // When there is the need to abort the reading of a file early
+            // we need to continue reading until the end to avoid mem leaks
+            while (line)
+            {
+                free(line);
+                line = get_next_line(fd);
+            }
             return (0);
         }
         ft_lstadd_back(&map_lines, ft_lstnew(ft_strdup(clean_line)));
