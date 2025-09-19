@@ -22,18 +22,17 @@ static int	set_texture_path(char *line, const char *id, char **target)
 
 void	texture_parser(t_game *game, char *line)
 {
-	char	*clean_line;
+	//char	*clean_line;
 
-	clean_line = ft_strtrim(line, "\n");
-	if (set_texture_path(clean_line, "NO", &game->textures.no_path) == 0)
-		return (free(clean_line));
-	else if (set_texture_path(clean_line, "SO", &game->textures.so_path) == 0)
-		return (free(clean_line));
-	else if (set_texture_path(clean_line, "WE", &game->textures.we_path) == 0)
-		return (free(clean_line));
-	else if (set_texture_path(clean_line, "EA", &game->textures.ea_path) == 0)
-		return (free(clean_line));
+	//clean_line = ft_strtrim(line, "\n");
+	if (set_texture_path(line, "NO", &game->textures.no_path) == 0)
+		return ;
+	else if (set_texture_path(line, "SO", &game->textures.so_path) == 0)
+		return ;
+	else if (set_texture_path(line, "WE", &game->textures.we_path) == 0)
+		return ;
+	else if (set_texture_path(line, "EA", &game->textures.ea_path) == 0)
+		return ;
 	else
 		ft_dprintf(2, "Error\nUnknown texture identifier\n");
-	free(clean_line);
 }

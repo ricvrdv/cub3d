@@ -84,6 +84,7 @@ void	texture_parser(t_game *game, char *line);
 
 // map_parser
 int     map_parser(t_game *game, int fd, char *line);
+int     is_map_line(const char *line);
 
 // events
 int     handle_keypress(int keysym, t_game *game);
