@@ -1,5 +1,23 @@
 #include "../inc/cub3d.h"
 
+static void free_grid(t_game *game)
+{
+    int i;
+
+    if (game->grid)
+    {
+        i = 0;
+        while (i < game->map_height)
+        {
+            if (game->grid[i])
+                free(game->grid[i]);
+            i++;
+        }
+        free(game->grid);
+        game->grid = NULL;
+    }
+}
+
 static void destroy_textures(t_game *game)
 {
     if (game->textures.no_path)
@@ -24,6 +42,7 @@ void clean_game(t_game *game)
 {
     if (!game)
         return ;
+    free_grid(game);
     if (game->img.img_ptr)
         mlx_destroy_image(game->mlx_ptr, game->img.img_ptr);
     destroy_textures(game);

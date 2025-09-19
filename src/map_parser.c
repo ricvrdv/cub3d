@@ -90,17 +90,88 @@ static int  map_to_array(t_game *game, t_list *map_lines, int width, int height)
     return (1);
 }*/
 
+static void normalize_map(char *dest, const char *src, int width)
+{
+    int i;
+    int src_len;
+
+    i = 0;
+    src_len = ft_strlen(src);
+    while (i < src_len && i < width)
+    {
+        dest[i] = src[i];
+        i++;
+    }
+    while (i < width)
+    {
+        dest[i] = 'X';
+        i++;
+    }
+    dest[i] = '\0';
+}
+
+int map_to_array(t_game *game, t_list *map_lines, int width, int height)
+{
+    t_list  *current;
+    int     y;
+
+    current = map_lines;
+    game->grid = malloc(sizeof(char *) * height);
+    if (!game->grid)
+        return (0);
+    y = 0;
+    while (current && y < height)
+    {
+        game->grid[y] = malloc(sizeof(char) * (width + 1));
+        if (!game->grid[y])
+        {
+            while (y > 0)
+            {
+                free(game->grid[y]);
+                y--;
+            }
+            free(game->grid);
+            return (0);
+        }
+        normalize_map(game->grid[y], current->content, width);
+        printf("%s\n", game->grid[y]);
+        y++;
+        current = current->next;
+    }
+    return (1);
+}
+
+static char *convert_spaces(const char *line)
+{
+    int     i;
+    int     len;
+    char    *converted;
+
+    len = ft_strlen(line);
+    converted = malloc(len + 1);
+    if (!converted)
+        return (NULL);
+    i = 0;
+    while (i < len)
+    {
+        if (line[i] == ' ')
+            converted[i] = 'X';
+        else
+            converted[i] = line[i];
+        i++;
+    }
+    converted[i] = '\0';
+    return (converted);
+}
+
 int map_parser(t_game *game, int fd, char *line)
 {
     t_list  *map_lines;
     char    *clean_line;
-    int     max_width; // or just use game->map.width; that was init to 0 already
 
-    (void)game;
     map_lines = NULL;
-    max_width = (int)ft_strlen(line);
-    ft_lstadd_back(&map_lines, ft_lstnew(ft_strdup(line)));
-    //free(line);
+    game->map_width = (int)ft_strlen(line);
+    ft_lstadd_back(&map_lines, ft_lstnew(convert_spaces(line)));
     line = get_next_line(fd);
     while (line)
     {
@@ -120,13 +191,17 @@ int map_parser(t_game *game, int fd, char *line)
             }
             return (0);
         }
-        ft_lstadd_back(&map_lines, ft_lstnew(ft_strdup(clean_line)));
-        max_width = ft_max(max_width, (int)ft_strlen(clean_line));
+        ft_lstadd_back(&map_lines, ft_lstnew(convert_spaces(clean_line)));
+        game->map_width = ft_max(game->map_width, (int)ft_strlen(clean_line));
         free(clean_line);
         line = get_next_line(fd);
     }
+    game->map_height = ft_lstsize(map_lines);
+    if (!map_to_array(game, map_lines, game->map_width, game->map_height))
+    {
+        ft_lstclear(&map_lines, free);
+        return (0);
+    }
     ft_lstclear(&map_lines, free);
-    //if (!map_to_array(game, map_lines, max_width, ft_lstsize(map_lines)))
-    //    return (0);
     return (1);
 }

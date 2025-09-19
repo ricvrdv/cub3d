@@ -60,6 +60,9 @@ typedef struct  s_game
 {
     void        *mlx_ptr;
     void        *win_ptr;
+    char        **grid;
+    int         map_width;
+    int         map_height;
     t_img       img;
     t_player    player;
     t_textures  textures;
@@ -85,6 +88,7 @@ void	texture_parser(t_game *game, char *line);
 // map_parser
 int     map_parser(t_game *game, int fd, char *line);
 int     is_map_line(const char *line);
+int     map_to_array(t_game *game, t_list *map_lines, int width, int height);
 
 // events
 int     handle_keypress(int keysym, t_game *game);
