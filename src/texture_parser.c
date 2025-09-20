@@ -6,22 +6,48 @@ static int path_valid(char *line)
 	char	*last;
 	int		i;
 
-	split = ft_split(line, '.');
+	if (ft_strchr(line, '.') == NULL)
+		return (-1);
+	else
+		split = ft_split(line, '.');
 	if (!split || !split[0])
 		return (-1);
 	if (ft_strncmp(split[1], "xpm", 3) != 0)
-		return (free(split), -1);
+		return (free_arrays((void **)split), -1);
+	i = 3;
+	while (split[1][i])
+	{
+		if (split[1][i] != '\0' && !ft_is_space(split[1][i]))
+			return (free_arrays((void **)split), -1);
+		i++;
+	}
 	last = ft_strrchr(split[0], '/');
 	i = 0;
 	if (!last[i + 1])
-		return (free(split), -1);
-	free(split);
+		return (free_arrays((void **)split), -1);
+	return (free_arrays((void **)split), 0);
+}
+
+static int path_exists(char *line)
+{
+	char	*path;
+	int		fd;
+
+	path = line;
+	while (*path && !ft_is_space(*path))
+		path++;
+	while (*path && ft_is_space(*path))
+		path++;
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	close(fd);
 	return (0);
 }
 
 static int	set_texture_path(t_game *game, char *line, const char *id, char **target)
 {
-	if (path_valid(line) == -1)
+	if (path_valid(line) == -1 || path_exists(line) == -1)
 	{
 		handle_error(game, "Texture path is not valid\n");
 		return (1);

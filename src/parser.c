@@ -75,6 +75,6 @@ void parser(t_game *game, char *filename)
 	}
 	close(fd);
 	if (check_missing_elem(game))
-		handle_error(game, "File is missing an element\n");
+		handle_error(game, "File is missing elements\n");
 	return ;
 }
