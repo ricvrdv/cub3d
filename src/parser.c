@@ -15,6 +15,26 @@ int skip_spaces(char *line)
 	return (-1);
 }
 
+static int	is_map_line(const char *line)
+{
+    int i;
+    int has_map_content;
+
+    has_map_content = 0;
+    if (!line || line[0] == '\0')
+        return (0);
+    i = 0;
+    while (line[i])
+    {
+        if (!ft_strchr(" 01NSEW", line[i]))
+            return (0);
+        if (ft_strchr("01NSEW", line[i]))
+            has_map_content = 1;
+        i++;
+    }
+    return (has_map_content);
+}
+
 int handle_line(t_game *game, int fd, char *line)
 {
 	int	i;
