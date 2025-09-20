@@ -9,9 +9,13 @@ static int rgb_checker(char **line, int index)
 		(*line)++;
 	if (index < 2)
 	{
+		while (ft_is_space(**line))
+			(*line)++;
 		if (**line != ',')
 			return (ft_dprintf(2, "Error\nInvalid color format\n"), -1);
 		(*line)++;
+		while (ft_is_space(**line))
+			(*line)++;
 	}
 	else
 	{
