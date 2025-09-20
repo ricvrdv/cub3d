@@ -78,41 +78,9 @@ static int  is_map_closed(t_game *game)
     return (1);
 }
 
-static int  validate_map(t_game *game)
+static int  check_player_count(int player_count)
 {
-    int i;
-    int j;
-    int player_count;
-
-    i = 0;
-    player_count = 0;
-    while (i < game->map_height)
-    {
-        j = 0;
-        while (j < game->map_width)
-        {
-            if (!ft_strchr("01NSWEX", game->grid[i][j]))
-            {
-                ft_dprintf(2, "Error\n");
-                ft_dprintf(2, "Invalid char '%c' in map.\n", game->grid[i][j]);
-                return (0);
-            }
-            if (ft_strchr("NSWE", game->grid[i][j]))
-            {
-                player_count++;
-                if (player_count == 1)
-                {
-                    game->player.pos_x = j + 0.5;
-                    game->player.pos_y = i + 0.5;
-                    game->player.orientation = game->grid[i][j];
-                    //ft_printf("Player\nx: %d y: %d orientation: %c\n", game->player.pos_x, game->player.pos_y, game->player.orientation);
-                }
-            }
-            j++;
-        }
-        i++;
-    }
-    if (!player_count)
+    if (player_count == 0)
     {
         ft_dprintf(2, "Error\nNo player starting position found.\n");
         return (0);
@@ -122,6 +90,50 @@ static int  validate_map(t_game *game)
         ft_dprintf(2, "Error\nMultiple player starting positions found.\n");
         return (0);
     }
+    return (1);
+}
+
+static int  validate_chars(t_game *game, t_point *p, int *player_count)
+{
+    if (!ft_strchr("01NSWEX", game->grid[p->i][p->j]))
+    {
+        ft_dprintf(2, "Error\n");
+        ft_dprintf(2, "Invalid char '%c' in map.\n", game->grid[p->i][p->j]);
+        return (0);
+    }
+    if (ft_strchr("NSWE", game->grid[p->i][p->j]))
+    {
+        (*player_count)++;
+        if (*player_count == 1)
+        {
+            game->player.pos_x = p->j + 0.5;
+            game->player.pos_y = p->i + 0.5;
+            game->player.orientation = game->grid[p->i][p->j];
+        }
+    }
+    return (1);
+}
+
+static int  validate_map(t_game *game)
+{
+    t_point pos;
+    int     player_count;
+
+    pos.i = 0;
+    player_count = 0;
+    while (pos.i < game->map_height)
+    {
+        pos.j = 0;
+        while (pos.j < game->map_width)
+        {
+            if (!validate_chars(game, &pos, &player_count))
+                return (0);
+            pos.j++;
+        }
+        pos.i++;
+    }
+    if (!check_player_count(player_count))
+        return (0);
     if (!is_map_closed(game))
     {
         ft_dprintf(2, "Error\nMap is not closed.\n");
