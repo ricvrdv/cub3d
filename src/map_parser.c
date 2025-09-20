@@ -1,4 +1,4 @@
-#include "../inc/cub3d.h"
+#include "cub3d.h"
 
 static int  ft_max(int x, int y)
 {

@@ -50,7 +50,7 @@ SRC = $(SRCS_D)/main.c \
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 MINILIBX_FLAGS = -L$(MINILIBX_D) -lmlx -lXext -lX11 -lm
-HEADER = -I$(INCLUDES) -I$(MINILIBX_D) -I$(LIBFT_D)
+HEADER = -I$(INCLUDES) -I$(SRCS_D) -I$(MINILIBX_D) -I$(LIBFT_D)
 RM = rm -f
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
 

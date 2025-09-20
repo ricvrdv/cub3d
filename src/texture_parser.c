@@ -1,4 +1,4 @@
-#include "../inc/cub3d.h"
+#include "cub3d.h"
 
 static int	set_texture_path(char *line, const char *id, char **target)
 {

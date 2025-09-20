@@ -1,4 +1,4 @@
-#include "../inc/cub3d.h"
+#include "cub3d.h"
 
 static int  check_adjacent(t_game *game, t_point pos)
 {
