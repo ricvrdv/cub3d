@@ -35,6 +35,24 @@ int handle_line(t_game *game, char *line)
 	return (0);
 }
 
+static int check_missing_elem(t_game *game)
+{
+	if (!game->ceiling.id)
+		return (1);
+	else if (!game->floor.id)
+		return (1);
+	else if (!game->textures.no_path)
+		return (1);
+	else if (!game->textures.so_path)
+		return (1);
+	else if (!game->textures.we_path)
+		return (1);
+	else if (!game->textures.ea_path)
+		return (1);
+	else
+		return (0);
+}
+
 void parser(t_game *game, char *filename)
 {
 	int fd;
@@ -56,5 +74,7 @@ void parser(t_game *game, char *filename)
 		free(line);
 	}
 	close(fd);
+	if (check_missing_elem(game))
+		handle_error(game, "File is missing an element\n");
 	return ;
 }

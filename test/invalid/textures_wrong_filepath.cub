@@ -1,6 +1,6 @@
 WE textures/bricks.xpm
 SO textures/lava.xpm
-NO textures/ice.jpg
+NO textures/ice.xpm
 EA textures/noexist.xpm
 
 F 20,20,20
