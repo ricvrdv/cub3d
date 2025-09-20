@@ -27,68 +27,57 @@ int is_map_line(const char *line)
     return (has_map_content);
 }
 
-/*static void process_map_line(t_game *game, int y, char *line, int width)
+static int  validate_map(t_game *game)
 {
-    int x;
+    int i;
+    int j;
+    int player_count;
 
-    x = 0;
-    while (x < width)
+    i = 0;
+    player_count = 0;
+    while (i < game->map_height)
     {
-        if (x < (int)ft_strlen(line))
+        j = 0;
+        while (j < game->map_width)
         {
-            if (line[x] == '1')
-                game->map[y][x] = 1;
-            else if (line[x] == '0')
-                game->map[y][x] = 0;
-            else if (ft_strchr("NSEW", line[x]))
+            if (!ft_strchr("01NSWEX", game->grid[i][j]))
             {
-                game->map[y][x] = 0;
-                set_player_start(game, line[x], x, y);
+                ft_dprintf(2, "Error\n");
+                ft_dprintf(2, "Invalid char '%c' in map.\n", game->grid[i][j]);
+                return (0);
             }
-            else if (line[x] == ' ')
-                game->map[y][x] = 1;
-            else
-                game->map[y][x] = 1;
+            if (ft_strchr("NSWE", game->grid[i][j]))
+            {
+                player_count++;
+                if (player_count == 1)
+                {
+                    game->player.pos_x = j + 0.5;
+                    game->player.pos_y = i + 0.5;
+                    game->player.orientation = game->grid[i][j];
+                    //ft_printf("Player\nx: %d y: %d orientation: %c\n", game->player.pos_x, game->player.pos_y, game->player.orientation);
+                }
+            }
+            j++;
         }
-        else
-            game->map[y][x] = 1;
-        x++;
+        i++;
     }
-}
-
-static int  map_to_array(t_game *game, t_list *map_lines, int width, int height)
-{
-    int     y;
-    char    *line_content;
-    t_list  *current;
-
-    game->map = malloc(sizeof(int *) * height);
-    if (!game->map)
+    if (!player_count)
     {
-        // Print "Memory allocation failed"
+        ft_dprintf(2, "Error\nNo player starting position found.\n");
         return (0);
     }
-    y = 0;
-    current = map_lines;
-    while (current && y < height)
+    if (player_count > 1)
     {
-        line_content = (char *)current->content;
-        game->map[y] = malloc(sizeof(int) * width);
-        if (!game->map[y])
-        {
-            // Print "Memory allocation failed"
-            return (0);
-
-        }
-        process_map_line(game, y, line_content, width);
-        y++;
-        current = current->next;
+        ft_dprintf(2, "Error\nMultiple player starting positions found.\n");
+        return (0);
     }
-    game->map_width = width;
-    game->map_height = height;
-    ft_lstclear(&map_lines, NULL);
+    // if (!is_map_closed(game))
+    // {
+    //     ft_dprintf(2, "Error\nMap is not closed.\n");
+    //     return (0);
+    // }
     return (1);
-}*/
+}
 
 static void normalize_map(char *dest, const char *src, int width)
 {
@@ -134,7 +123,7 @@ int map_to_array(t_game *game, t_list *map_lines, int width, int height)
             return (0);
         }
         normalize_map(game->grid[y], current->content, width);
-        printf("%s\n", game->grid[y]);
+        //ft_printf("%s\n", game->grid[y]);
         y++;
         current = current->next;
     }
@@ -177,20 +166,20 @@ int map_parser(t_game *game, int fd, char *line)
     {
         clean_line = ft_strtrim(line, "\n");
         free(line);
-        if (!is_map_line(clean_line))
-        {
-            free(clean_line);
-            ft_lstclear(&map_lines, free);
-            line = get_next_line(fd);
-            // When there is the need to abort the reading of a file early
-            // we need to continue reading until the end to avoid mem leaks
-            while (line)
-            {
-                free(line);
-                line = get_next_line(fd);
-            }
-            return (0);
-        }
+        // if (!is_map_line(clean_line))
+        // {
+        //     free(clean_line);
+        //     ft_lstclear(&map_lines, free);
+        //     line = get_next_line(fd);
+        //     // When there is the need to abort the reading of a file early
+        //     // we need to continue reading until the end to avoid mem leaks
+        //     while (line)
+        //     {
+        //         free(line);
+        //         line = get_next_line(fd);
+        //     }
+        //     return (0);
+        // }
         ft_lstadd_back(&map_lines, ft_lstnew(convert_spaces(clean_line)));
         game->map_width = ft_max(game->map_width, (int)ft_strlen(clean_line));
         free(clean_line);
@@ -203,5 +192,7 @@ int map_parser(t_game *game, int fd, char *line)
         return (0);
     }
     ft_lstclear(&map_lines, free);
+    if (!validate_map(game))
+        return (0);
     return (1);
 }

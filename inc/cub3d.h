@@ -28,6 +28,9 @@ typedef struct  s_img
 
 typedef struct  s_player
 {
+    int     pos_x;
+    int     pos_y;
+    char    orientation;
     bool    key_w;
     bool    key_s;
     bool    key_a;
