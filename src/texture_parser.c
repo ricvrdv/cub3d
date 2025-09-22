@@ -73,10 +73,6 @@ static int	set_texture_path(t_game *game, char *line, const char *id, char **tar
 void	texture_parser(t_game *game, char *line)
 {
 	if (set_texture_path(game, line, "NO", &game->textures.no_path) == 0)
-	//char	*clean_line;
-
-	//clean_line = ft_strtrim(line, "\n");
-	if (set_texture_path(game, line, "NO", &game->textures.no_path) == 0)
 		return ;
 	else if (set_texture_path(game, line, "SO", &game->textures.so_path) == 0)
 		return ;

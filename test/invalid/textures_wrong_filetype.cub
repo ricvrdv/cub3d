@@ -1,7 +1,7 @@
-WE textures/bricks.xpm
-SO textures/lava.xpm
-NO textures/ice.jpg
-EA textures/leaves.xpm
+WE textures/north.xpm
+SO textures/west.xpm
+NO textures/south.jpg
+EA textures/east.xpm
 
 F 20,20,20
 C 200,200,200

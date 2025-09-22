@@ -1,7 +1,7 @@
-NO textures/ice.xpm banana
-WE textures/bricks.xpm
-SO textures/lava.xpm
-EA textures/leaves.xpm
+NO textures/south.xpm banana
+WE textures/north.xpm
+SO textures/west.xpm
+EA textures/east.xpm
 
 F 20,20,20
 C 200,200,200

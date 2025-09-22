@@ -52,7 +52,6 @@ int handle_line(t_game *game, int fd, char *line)
 			return(-1);
 		if (!map_parser(game, fd, line))
 			return (-1);
-		ft_printf("In progress...\n");
 		return (1);
 	}
 	return (0);
@@ -94,7 +93,7 @@ void parser(t_game *game, char *filename)
 	}
 	while (line)
 	{
-		clean_line = ft_strtrim(line, "\n");
+		clean_line = ft_strtrim(line, "\n\r");
 		free(line);
 		ret = handle_line(game, fd, clean_line);
 		if (ret)

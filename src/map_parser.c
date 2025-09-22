@@ -90,7 +90,7 @@ int map_parser(t_game *game, int fd, char *line)
     line = get_next_line(fd);
     while (line)
     {
-        clean_line = ft_strtrim(line, "\n");
+        clean_line = ft_strtrim(line, "\n\r");
         free(line);
         // if (!is_map_line(clean_line))
         // {
