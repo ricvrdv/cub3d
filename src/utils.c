@@ -18,6 +18,10 @@ static void load_from_path(t_game *game, t_img *texture, char *path)
     }
     texture->addr = mlx_get_data_addr(texture->img_ptr, &texture->bits_per_pixel,
         &texture->line_length, &texture->endian);
+    if (!texture->addr)
+    {
+        ft_printf("No addr\n");
+    }
 }
 
 void    load_textures(t_game *game)
