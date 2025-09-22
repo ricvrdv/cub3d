@@ -15,6 +15,7 @@ int main(int argc, char **argv)
         return (1);
     }
     ft_memset(&game, 0, sizeof(t_game));
+    parser(&game, argv[1]);
     init_game(&game);
     setup_hooks(&game);
     mlx_loop(game.mlx_ptr);

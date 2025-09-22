@@ -18,6 +18,10 @@ static void load_from_path(t_game *game, t_img *texture, char *path)
     }
     texture->addr = mlx_get_data_addr(texture->img_ptr, &texture->bits_per_pixel,
         &texture->line_length, &texture->endian);
+    if (!texture->addr)
+    {
+        ft_printf("No addr\n");
+    }
 }
 
 void    load_textures(t_game *game)
@@ -25,10 +29,6 @@ void    load_textures(t_game *game)
     t_textures  *texture;
 
     texture = &game->textures;
-    texture->no_path = "textures/north.xpm";
-    texture->so_path = "textures/south.xpm";
-    texture->we_path = "textures/west.xpm";
-    texture->ea_path = "textures/east.xpm";
     load_from_path(game, &texture->north, texture->no_path);
     load_from_path(game, &texture->south, texture->so_path);
     load_from_path(game, &texture->west, texture->we_path);

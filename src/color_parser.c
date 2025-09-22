@@ -9,9 +9,13 @@ static int rgb_checker(t_game *game, char **line, int index)
 		(*line)++;
 	if (index < 2)
 	{
+		while (ft_is_space(**line))
+			(*line)++;
 		if (**line != ',')
 			return (handle_error(game, "Invalid color format\n"), -1);
-		(**line)++;
+		(*line)++;
+		while (ft_is_space(**line))
+			(*line)++;
 	}
 	else
 	{
@@ -25,11 +29,22 @@ static int rgb_checker(t_game *game, char **line, int index)
 
 void color_parser(t_game *game, char *line)
 {
-	game->colors.id = *line;
+	t_colors *target;
+
+	if (*line == 'F' && !game->floor.id)
+		target = &game->floor;
+	else if (*line == 'C' && !game->ceiling.id)
+		target = &game->ceiling;
+	else
+	{
+		handle_error(game, "Unknown color identifier\n");
+		return ;
+	}
+	target->id = *line;
 	line++;
 	while (ft_is_space(*line))
 		line++;
-	game->colors.r_code = rgb_checker(game, &line, 0);
-	game->colors.g_code = rgb_checker(game, &line, 1);
-	game->colors.b_code = rgb_checker(game, &line, 2);
+	target->r_code = rgb_checker(game, &line, 0);
+	target->g_code = rgb_checker(game, &line, 1);
+	target->b_code = rgb_checker(game, &line, 2);
 }

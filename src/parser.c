@@ -28,20 +28,39 @@ int handle_line(t_game *game, char *line)
 		texture_parser(game, line + i);
 	else if (line[i] == '1')
 	{
-		map_parser(game, line);
+		// map_parser(game, line);
+		ft_printf("In progress...");
 		return (1);
 	}
 	return (0);
 }
 
-int parser(t_game *game, char *filename)
+static int check_missing_elem(t_game *game)
+{
+	if (!game->ceiling.id)
+		return (1);
+	else if (!game->floor.id)
+		return (1);
+	else if (!game->textures.no_path)
+		return (1);
+	else if (!game->textures.so_path)
+		return (1);
+	else if (!game->textures.we_path)
+		return (1);
+	else if (!game->textures.ea_path)
+		return (1);
+	else
+		return (0);
+}
+
+void parser(t_game *game, char *filename)
 {
 	int fd;
 	char *line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (handle_error(game, "Opening file failed\n"), 1);
+		return (handle_error(game, "Opening file failed\n"));
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -55,5 +74,7 @@ int parser(t_game *game, char *filename)
 		free(line);
 	}
 	close(fd);
-	return (0);
+	if (check_missing_elem(game))
+		handle_error(game, "File is missing elements\n");
+	return ;
 }
