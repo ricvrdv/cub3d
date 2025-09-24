@@ -14,7 +14,7 @@ static void load_from_path(t_game *game, t_img *texture, char *path)
         &texture->width, &texture->height);
     if (!texture->img_ptr)
     {
-        handle_error(game, "Failed to load texture.");
+        handle_error(game, "Failed to load texture.", 1);
     }
     texture->addr = mlx_get_data_addr(texture->img_ptr, &texture->bits_per_pixel,
         &texture->line_length, &texture->endian);
@@ -45,11 +45,14 @@ void    put_pixel(t_img *img, int x, int y, int color)
     *(unsigned int *)dst = color;
 }
 
-void    handle_error(t_game *game, char *message)
+void    handle_error(t_game *game, char *message, int flag)
 {
     ft_putstr_fd("Error\n", STDERR_FILENO);
     if (message)
         ft_putstr_fd(message, STDERR_FILENO);
     clean_game(game);
-    exit(EXIT_FAILURE);
+    if (flag)
+        exit(EXIT_FAILURE);
+    else
+        return ;
 }

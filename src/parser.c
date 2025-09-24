@@ -38,14 +38,19 @@ static int	is_map_line(const char *line)
 int handle_line(t_game *game, int fd, char *line)
 {
 	int	i;
+	int res;
 
 	i = skip_spaces(line);
 	if (i == -1 || line[i] == '\0')
 		return (0);
 	if (ft_strchr("FC", line[i]))
-		color_parser(game, line + i);
+		res = color_parser(game, line + i);
+	if (res == -1)
+		return (res);
 	else if (ft_strchr("NSWE", line[i]))
-		texture_parser(game, line + i);
+		res = texture_parser(game, line + i);
+	if (res == -1)
+		return (res);
 	else if (line[i] == '1')
 	{
 		if (!is_map_line(line))
@@ -84,12 +89,12 @@ void parser(t_game *game, char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (handle_error(game, "Opening file failed\n"));
+		return (handle_error(game, "Opening file failed\n", 1));
 	line = get_next_line(fd);
 	if (!line)
 	{
 		close(fd);
-		handle_error(game, "Map file is empty.\n");
+		handle_error(game, "Map file is empty.\n", 1);
 	}
 	while (line)
 	{
@@ -116,6 +121,6 @@ void parser(t_game *game, char *filename)
 	}
 	close(fd);
 	if (check_missing_elem(game))
-		handle_error(game, "File is missing elements\n");
+		handle_error(game, "File is missing elements\n", 1);
 	return ;
 }

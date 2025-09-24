@@ -89,10 +89,10 @@ int     handle_line(t_game *game, int fd, char *line);
 void    parser(t_game *game, char *filename);
 
 //color_parser
-void    color_parser(t_game *game, char *line);
+int    color_parser(t_game *game, char *line);
 
 //texture_parser
-void	texture_parser(t_game *game, char *line);
+int 	texture_parser(t_game *game, char *line);
 
 // map_parser
 int     map_parser(t_game *game, int fd, char *line);
@@ -116,6 +116,6 @@ void    clean_game(t_game *game);
 void    setup_hooks(t_game *game);
 void    load_textures(t_game *game);
 void    put_pixel(t_img *img, int x, int y, int color);
-void    handle_error(t_game *game, char *message);
+void    handle_error(t_game *game, char *message, int flag);
 
 #endif
