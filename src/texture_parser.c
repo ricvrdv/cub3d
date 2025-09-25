@@ -42,7 +42,7 @@ static int path_exists(char *line)
 	clean_path = ft_strtrim(path, " ");
 	fd = open(clean_path, O_RDONLY);
 	if (fd == -1)
-		return (-1);
+		return (free(clean_path), -1);
 	close(fd);
 	free(clean_path);
 	return (0);
