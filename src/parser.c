@@ -41,6 +41,7 @@ int handle_line(t_game *game, int fd, char *line)
 	int res;
 
 	i = skip_spaces(line);
+	res = 0;
 	if (i == -1 || line[i] == '\0')
 		return (0);
 	if (ft_strchr("FC", line[i]))
