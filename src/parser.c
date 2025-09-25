@@ -35,28 +35,6 @@ static int	is_map_line(const char *line)
     return (has_map_content);
 }
 
-int handle_line(t_game *game, int fd, char *line)
-{
-	int	i;
-
-	i = skip_spaces(line);
-	if (i == -1 || line[i] == '\0')
-		return (0);
-	if (ft_strchr("FC", line[i]))
-		color_parser(game, line + i);
-	else if (ft_strchr("NSWE", line[i]))
-		texture_parser(game, line + i);
-	else if (line[i] == '1')
-	{
-		if (!is_map_line(line))
-			return(-1);
-		if (!map_parser(game, fd, line))
-			return (-1);
-		return (1);
-	}
-	return (0);
-}
-
 static int check_missing_elem(t_game *game)
 {
 	if (!game->ceiling.id)
@@ -73,6 +51,46 @@ static int check_missing_elem(t_game *game)
 		return (1);
 	else
 		return (0);
+}
+
+int handle_line(t_game *game, int fd, char *line)
+{
+	int	i;
+
+	i = skip_spaces(line);
+	if (i == -1 || line[i] == '\0')
+		return (0);
+	if (ft_strchr("FC", line[i]))
+		color_parser(game, line + i);
+	else if (ft_strchr("NSWE", line[i]))
+		texture_parser(game, line + i);
+	else if (line[i] == '1')
+	{
+		if (check_missing_elem(game))
+		{
+			ft_dprintf(2, "Error\nMap has to be the last element\n");
+			return (-1);
+		}
+		if (!is_map_line(line))
+			return(-1);
+		if (!map_parser(game, fd, line))
+			return (-1);
+		return (1);
+	}
+	return (0);
+}
+
+static void	finish_file_reading(int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	close (fd);
 }
 
 void parser(t_game *game, char *filename)
@@ -101,7 +119,7 @@ void parser(t_game *game, char *filename)
 			if (ret == -1)
 			{
 				free(clean_line);
-				close(fd);
+				finish_file_reading(fd);
 				clean_game(game);
 				exit(EXIT_FAILURE);
 			}
