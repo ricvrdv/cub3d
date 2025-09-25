@@ -31,6 +31,7 @@ static int path_valid(char *line)
 static int path_exists(char *line)
 {
 	char	*path;
+	char	*clean_path;
 	int		fd;
 
 	path = line;
@@ -38,19 +39,23 @@ static int path_exists(char *line)
 		path++;
 	while (*path && ft_is_space(*path))
 		path++;
-	fd = open(path, O_RDONLY);
+	clean_path = ft_strtrim(path, " ");
+	fd = open(clean_path, O_RDONLY);
 	if (fd == -1)
 		return (-1);
 	close(fd);
+	free(clean_path);
 	return (0);
 }
 
-static int	set_texture_path(char *line, const char *id, char **target)
+static int	set_texture_path(char *line, char **target)
 {
-	if (path_valid(line) == -1 || path_exists(line) == -1)
-		return (ft_dprintf(2, "Error\nTexture path is not valid\n"), -1);
-	if ((ft_strncmp(line, id, 2) == 0) && !*target)
+	char	*clean_line;
+
+	if (!*target)
 	{
+		if (path_valid(line) == -1 || path_exists(line) == -1)
+			return (ft_dprintf(2, "Error\nTexture path is not valid\n"), -1);
 		line += 2;
 		if (!ft_is_space(*line))
 			return (ft_dprintf(2, "Error\nUnknown texture identifier\n"), -1);
@@ -58,22 +63,24 @@ static int	set_texture_path(char *line, const char *id, char **target)
 			line++;
 		if (*line == '\0')
 			return (ft_dprintf(2, "Error\nMissing texture path\n"), -1);
-		*target = ft_strdup(line);
+		clean_line = ft_strtrim(line, " ");
+		*target = ft_strdup(clean_line);
+		free(clean_line);
 		return (0);
 	}
-	return (-1);
+	return (ft_dprintf(2, "Error\nTexture duplicate\n"), -1);
 }
 
 int	texture_parser(t_game *game, char *line)
 {
-	if (set_texture_path(line, "NO", &game->textures.no_path) == 0)
-		return (0);
-	else if (set_texture_path(line, "SO", &game->textures.so_path) == 0)
-		return (0);
-	else if (set_texture_path(line, "WE", &game->textures.we_path) == 0)
-		return (0);
-	else if (set_texture_path(line, "EA", &game->textures.ea_path) == 0)
-		return (0);
+	if ((ft_strncmp(line, "NO", 2) == 0))
+		return (set_texture_path(line, &game->textures.no_path));
+	else if ((ft_strncmp(line, "SO", 2) == 0))
+		return (set_texture_path(line, &game->textures.so_path));
+	else if ((ft_strncmp(line, "WE", 2) == 0))
+		return (set_texture_path(line, &game->textures.we_path));
+	else if ((ft_strncmp(line, "EA", 2) == 0))
+		return (set_texture_path(line, &game->textures.ea_path));
 	else
 		return (ft_dprintf(2, "Error\nUnknown texture identifier\n"), -1);
 }
