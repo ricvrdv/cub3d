@@ -24,5 +24,6 @@ long	ft_atol(const char *nptr);
 int		ft_is_space(char c);
 int		ft_is_directory(const char *path);
 int		ft_str_isalnum(char *c);
+int		ft_max(int x, int y);
 
 #endif

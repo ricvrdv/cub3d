@@ -1,12 +1,5 @@
 #include "cub3d.h"
 
-static int  ft_max(int x, int y)
-{
-    if (x > y)
-        return (x);
-    return (y);
-}
-
 static void normalize_map(char *dest, const char *src, int width)
 {
     int i;
@@ -92,20 +85,12 @@ int map_parser(t_game *game, int fd, char *line)
     {
         clean_line = ft_strtrim(line, "\n\r");
         free(line);
-        // if (!is_map_line(clean_line))
-        // {
-        //     free(clean_line);
-        //     ft_lstclear(&map_lines, free);
-        //     line = get_next_line(fd);
-        //     // When there is the need to abort the reading of a file early
-        //     // we need to continue reading until the end to avoid mem leaks
-        //     while (line)
-        //     {
-        //         free(line);
-        //         line = get_next_line(fd);
-        //     }
-        //     return (0);
-        // }
+         if (!*clean_line)
+        {
+            free(clean_line);
+            ft_lstclear(&map_lines, free);
+            return (0);
+        }
         ft_lstadd_back(&map_lines, ft_lstnew(convert_spaces(clean_line)));
         game->map_width = ft_max(game->map_width, (int)ft_strlen(clean_line));
         free(clean_line);
