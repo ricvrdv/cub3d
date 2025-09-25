@@ -89,6 +89,7 @@ int map_parser(t_game *game, int fd, char *line)
         {
             free(clean_line);
             ft_lstclear(&map_lines, free);
+            ft_dprintf(2, "Error\nMap has an empty line\n");
             return (0);
         }
         ft_lstadd_back(&map_lines, ft_lstnew(convert_spaces(clean_line)));
