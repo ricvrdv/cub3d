@@ -66,6 +66,11 @@ int handle_line(t_game *game, int fd, char *line)
 		return (texture_parser(game, line + i));
 	else if (line[i] == '1')
 	{
+		if (check_missing_elem(game))
+		{
+			ft_dprintf(2, "Error\nMap has to be the last element\n");
+			return (-1);
+		}
 		if (!is_map_line(line))
 			return(-1);
 		if (!map_parser(game, fd, line))
