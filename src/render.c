@@ -143,7 +143,7 @@ void    raycast(t_game *game)
             draw_start = 0;
         draw_end = line_height / 2 + WIN_HEIGHT / 2;
         if (draw_end >= WIN_HEIGHT)
-            draw_end = WIN_HEIGHT - 1;
+            draw_end = WIN_HEIGHT;
         //texture drawing
         if (side == 0)
             wall_x = pos_y + perp_wall_dist * ray_dir_y;
