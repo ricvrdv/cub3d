@@ -129,7 +129,7 @@ void    raycast(t_game *game)
                 map_y += step_y;
                 side = 1;
             }
-            if (game->grid[map_y][map_x] > 0)
+            if (game->grid[map_y][map_x] == '1')
                 hit = 1;
         }
         //wall projection
