@@ -66,6 +66,18 @@ static int  check_player_count(int player_count)
     return (1);
 }
 
+static void set_player_direction(t_game *game, int i, int j)
+{
+    if (game->grid[i][j] == 'N')
+        game->player.angle = 3 * M_PI / 2;
+    else if (game->grid[i][j] == 'S')
+        game->player.angle = M_PI / 2;
+    else if (game->grid[i][j] == 'W')
+        game->player.angle = M_PI;
+    else
+        game->player.angle = 0.0;
+}
+
 static int  validate_chars(t_game *game, t_point *p, int *player_count)
 {
     if (!ft_strchr("01NSWEX", game->grid[p->i][p->j]))
@@ -79,9 +91,9 @@ static int  validate_chars(t_game *game, t_point *p, int *player_count)
         (*player_count)++;
         if (*player_count == 1)
         {
-            game->player.pos_x = p->j + 0.5;
-            game->player.pos_y = p->i + 0.5;
-            game->player.orientation = game->grid[p->i][p->j];
+            game->player.position.x = p->j * TILE_SIZE + TILE_SIZE / 2;
+            game->player.position.y = p->i * TILE_SIZE + TILE_SIZE / 2;
+            set_player_direction(game, p->i, p->j);
         }
     }
     return (1);

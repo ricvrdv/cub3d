@@ -3,6 +3,7 @@
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
+# define TILE_SIZE 32
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -21,6 +22,12 @@ typedef struct  s_point
     int j;
 } t_point;
 
+typedef struct  s_pos
+{
+    double  x;
+    double  y;
+}   t_pos;
+
 typedef struct  s_img
 {
     void    *img_ptr;
@@ -34,9 +41,12 @@ typedef struct  s_img
 
 typedef struct  s_player
 {
-    int     pos_x;
-    int     pos_y;
-    char    orientation;
+    t_pos   position;
+    double  angle;
+    double  dirX;
+    double  dirY;
+    double  planeX;
+    double  planeY;
     bool    key_w;
     bool    key_s;
     bool    key_a;
