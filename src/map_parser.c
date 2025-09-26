@@ -72,31 +72,48 @@ static char *convert_spaces(const char *line)
     return (converted);
 }
 
+static int  handle_map_line(t_list **map_lines, char *line, int *map_width)
+{
+    char    *clean_line;
+
+    clean_line = ft_strtrim(line, "\n\r");
+    free(line);
+    if (!*clean_line)
+    {
+        free(clean_line);
+        ft_lstclear(map_lines, free);
+        ft_dprintf(2, "Error\nMap has an empty line\n");
+        return (0);
+    }
+    ft_lstadd_back(map_lines, ft_lstnew(convert_spaces(clean_line)));
+    *map_width = ft_max(*map_width, (int)ft_strlen(clean_line));
+    free(clean_line);
+    return (1);
+}
+
+static int  read_map_lines(int fd, t_list **map_lines, int *map_width)
+{
+    char    *line;
+
+    line = get_next_line(fd);
+    while (line)
+    {
+        if (!handle_map_line(map_lines, line, map_width))
+            return (0);
+        line = get_next_line(fd);
+    }
+    return (1);
+}
+
 int map_parser(t_game *game, int fd, char *line)
 {
     t_list  *map_lines;
-    char    *clean_line;
 
     map_lines = NULL;
     game->map_width = (int)ft_strlen(line);
     ft_lstadd_back(&map_lines, ft_lstnew(convert_spaces(line)));
-    line = get_next_line(fd);
-    while (line)
-    {
-        clean_line = ft_strtrim(line, "\n\r");
-        free(line);
-         if (!*clean_line)
-        {
-            free(clean_line);
-            ft_lstclear(&map_lines, free);
-            ft_dprintf(2, "Error\nMap has an empty line\n");
-            return (0);
-        }
-        ft_lstadd_back(&map_lines, ft_lstnew(convert_spaces(clean_line)));
-        game->map_width = ft_max(game->map_width, (int)ft_strlen(clean_line));
-        free(clean_line);
-        line = get_next_line(fd);
-    }
+    if (!read_map_lines(fd, &map_lines, &game->map_width))
+        return (0);
     game->map_height = ft_lstsize(map_lines);
     if (!map_to_array(game, map_lines, game->map_width, game->map_height))
     {
@@ -104,7 +121,5 @@ int map_parser(t_game *game, int fd, char *line)
         return (0);
     }
     ft_lstclear(&map_lines, free);
-    if (!validate_map(game))
-        return (0);
-    return (1);
+    return (validate_map(game));
 }
