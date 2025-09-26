@@ -72,6 +72,8 @@ typedef struct  s_game
     char        **grid;
     int         map_width;
     int         map_height;
+    int         floor_color;
+    int         ceiling_color;
     t_img       img;
     t_player    player;
     t_textures  textures;

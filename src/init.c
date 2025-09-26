@@ -1,5 +1,10 @@
 #include "cub3d.h"
 
+static int rgb_to_int(t_colors color)
+{
+    return (color.r_code << 16 | color.g_code << 8 | color.b_code);
+}
+
 void    init_game(t_game *game)
 {
     game->mlx_ptr = mlx_init();
@@ -17,6 +22,8 @@ void    init_game(t_game *game)
     game->img.width = WIN_WIDTH;
     game->img.height = WIN_HEIGHT;
     load_textures(game);
+    game->floor_color = rgb_to_int(game->floor);
+    game->ceiling_color = rgb_to_int(game->ceiling);
 }
 
 int input_checker(char *input)
