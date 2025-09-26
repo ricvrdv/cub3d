@@ -69,13 +69,25 @@ static int  check_player_count(int player_count)
 static void set_player_direction(t_game *game, int i, int j)
 {
     if (game->grid[i][j] == 'N')
-        game->player.angle = 3 * M_PI / 2;
+    {
+        game->player.dirX = 0;
+        game->player.dirY = -1;
+    }
     else if (game->grid[i][j] == 'S')
-        game->player.angle = M_PI / 2;
+    {
+        game->player.dirX = 0;
+        game->player.dirY = 1;
+    }
     else if (game->grid[i][j] == 'W')
-        game->player.angle = M_PI;
+    {
+        game->player.dirX = -1;
+        game->player.dirY = 0;
+    }
     else
-        game->player.angle = 0.0;
+    {
+        game->player.dirX = 1;
+        game->player.dirY = 0;
+    }
 }
 
 static int  validate_chars(t_game *game, t_point *p, int *player_count)
