@@ -115,6 +115,10 @@ int     map_to_array(t_game *game, t_list *map_lines, int width, int height);
 // validate_map
 int     validate_map(t_game *game);
 
+// map_utils
+void    normalize_map(char *dest, const char *src, int width);
+void    set_player_direction(t_game *game, int i, int j);
+
 // events
 int     handle_keypress(int keysym, t_game *game);
 int     handle_keyrelease(int keysym, t_player *player);

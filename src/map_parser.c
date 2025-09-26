@@ -1,25 +1,5 @@
 #include "cub3d.h"
 
-static void normalize_map(char *dest, const char *src, int width)
-{
-    int i;
-    int src_len;
-
-    i = 0;
-    src_len = ft_strlen(src);
-    while (i < src_len && i < width)
-    {
-        dest[i] = src[i];
-        i++;
-    }
-    while (i < width)
-    {
-        dest[i] = 'X';
-        i++;
-    }
-    dest[i] = '\0';
-}
-
 int map_to_array(t_game *game, t_list *map_lines, int width, int height)
 {
     t_list  *current;

@@ -66,30 +66,6 @@ static int  check_player_count(int player_count)
     return (1);
 }
 
-static void set_player_direction(t_game *game, int i, int j)
-{
-    if (game->grid[i][j] == 'N')
-    {
-        game->player.dirX = 0;
-        game->player.dirY = -1;
-    }
-    else if (game->grid[i][j] == 'S')
-    {
-        game->player.dirX = 0;
-        game->player.dirY = 1;
-    }
-    else if (game->grid[i][j] == 'W')
-    {
-        game->player.dirX = -1;
-        game->player.dirY = 0;
-    }
-    else
-    {
-        game->player.dirX = 1;
-        game->player.dirY = 0;
-    }
-}
-
 static int  validate_chars(t_game *game, t_point *p, int *player_count)
 {
     if (!ft_strchr("01NSWEX", game->grid[p->i][p->j]))

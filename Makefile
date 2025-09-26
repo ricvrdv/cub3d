@@ -37,6 +37,7 @@ SRC = $(SRCS_D)/main.c \
 	$(SRCS_D)/texture_parser.c \
 	$(SRCS_D)/map_parser.c \
 	$(SRCS_D)/validate_map.c \
+	$(SRCS_D)/map_utils.c \
 	$(SRCS_D)/clean.c \
 	$(SRCS_D)/utils.c
 
