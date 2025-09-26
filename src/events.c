@@ -68,18 +68,18 @@ void handle_movement(t_game *game)
 	}
     if (player->key_a)
 	{
-		moveX -= player->dirY * player->move_speed;
-		moveY += player->dirX * player->move_speed;
-	}
-    if (player->key_d)
-	{
 		moveX += player->dirY * player->move_speed;
 		moveY -= player->dirX * player->move_speed;
 	}
+    if (player->key_d)
+	{
+		moveX -= player->dirY * player->move_speed;
+		moveY += player->dirX * player->move_speed;
+	}
     if (player->key_left) 
-		rotSpeed += player->rot_speed;
-    if (player->key_right)
 		rotSpeed -= player->rot_speed;
+    if (player->key_right)
+		rotSpeed += player->rot_speed;
     if (rotSpeed != 0)
         rotate_player(player, rotSpeed);
     if (moveX != 0 || moveY != 0)

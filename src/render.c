@@ -166,7 +166,7 @@ void    raycast(t_game *game)
                 current_tex = &game->textures.west;
         }
         tex_x = (int)(wall_x * (double)current_tex->width);
-        if ((side == 0 && ray_dir_x > 0) || (side == 1 && ray_dir_y < 0))
+        if ((side == 0 && ray_dir_x < 0) || (side == 1 && ray_dir_y > 0))
             tex_x = current_tex->width - tex_x - 1;
         step = 1.0 * current_tex->height / line_height;
         tex_pos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
