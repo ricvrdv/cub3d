@@ -47,6 +47,8 @@ typedef struct  s_player
     double  dirY;
     double  planeX;
     double  planeY;
+    double  move_speed;
+    double  rot_speed;
     bool    key_w;
     bool    key_s;
     bool    key_a;
@@ -117,6 +119,8 @@ int     validate_map(t_game *game);
 int     handle_keypress(int keysym, t_game *game);
 int     handle_keyrelease(int keysym, t_player *player);
 int     close_window(t_game *game);
+void    handle_movement(t_game *game);
+void    rotate_player(t_player *player, double rot_speed);
 
 // render
 int     render_frame(t_game *game);

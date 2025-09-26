@@ -24,6 +24,8 @@ void    init_game(t_game *game)
     load_textures(game);
     game->floor_color = rgb_to_int(game->floor);
     game->ceiling_color = rgb_to_int(game->ceiling);
+    game->player.move_speed = 0.02;
+    game->player.rot_speed = 0.01;
 }
 
 int input_checker(char *input)

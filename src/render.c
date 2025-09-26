@@ -185,6 +185,7 @@ void    raycast(t_game *game)
 
 int render_frame(t_game *game)
 {
+    handle_movement(game);
     draw_floor_ceiling(game);
     raycast(game);
     mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img.img_ptr, 0, 0);
