@@ -6,7 +6,7 @@
 #    By: ddo-carm <ddo-carm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/10 17:05:56 by ddo-carm          #+#    #+#              #
-#    Updated: 2025/09/27 13:01:57 by ddo-carm         ###   ########.fr        #
+#    Updated: 2025/09/27 15:23:02 by ddo-carm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ INCLUDES = ./inc
 SRC = $(SRCS_D)/main.c \
 	$(SRCS_D)/init.c \
 	$(SRCS_D)/render.c \
+	$(SRCS_D)/raycast.c \
+	$(SRCS_D)/raycast_utils.c \
 	$(SRCS_D)/events.c \
 	$(SRCS_D)/movement.c \
 	$(SRCS_D)/parser.c \

@@ -6,7 +6,7 @@
 /*   By: ddo-carm <ddo-carm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 12:37:26 by ddo-carm          #+#    #+#             */
-/*   Updated: 2025/09/27 12:55:41 by ddo-carm         ###   ########.fr       */
+/*   Updated: 2025/09/27 15:22:43 by ddo-carm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,29 @@ typedef struct s_img
 	int		width;
 	int		height;
 }	t_img;
+
+typedef struct s_raycast
+{
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		perp_wall_dist;
+	int			line_height;
+	int			tex_x;
+	int			tex_y;
+	double		tex_pos;
+	int			side;
+	int			draw_start;
+	int			draw_end;
+	double		step;
+	t_pos		grid_pos;
+	t_img		current_tex;
+}	t_raycast;
 
 typedef struct s_player
 {
@@ -103,6 +126,7 @@ typedef struct s_game
 	t_textures	textures;
 	t_colors	floor;
 	t_colors	ceiling;
+	t_raycast	raycast;
 }	t_game;
 
 //	init
@@ -142,9 +166,16 @@ int		close_window(t_game *game);
 void	handle_movement(t_game *game);
 void	rotate_player(t_player *player, double rot_speed);
 
+//raycast
+void	raycast(t_game *game, int color);
+
+//raycast_utils
+void	init_raycast(t_raycast *raycast, t_player *player, t_game *game);
+void	init_dda(t_raycast *raycast, t_player *player, int x);
+
 // render
 int		render_frame(t_game *game);
-void	raycast(t_game *game);
+int		get_texture_pixel(t_img *texture, int x, int y);
 
 // clean
 void	clean_game(t_game *game);
