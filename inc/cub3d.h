@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddo-carm <ddo-carm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/27 12:37:26 by ddo-carm          #+#    #+#             */
+/*   Updated: 2025/09/27 12:38:37 by ddo-carm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -69,7 +81,7 @@ typedef struct s_textures
 	t_img	east;
 }	t_textures;
 
-typedef	struct	s_colors
+typedef struct s_colors
 {
 	char	id;
 	int		r_code;
@@ -77,15 +89,15 @@ typedef	struct	s_colors
 	int		b_code;
 }	t_colors;
 
-typedef	struct	s_game
+typedef struct s_game
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	char	**grid;
-	int		map_width;
-	int		map_height;
-	int		floor_color;
-	int		ceiling_color;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	char		**grid;
+	int			map_width;
+	int			map_height;
+	int			floor_color;
+	int			ceiling_color;
 	t_img		img;
 	t_player	player;
 	t_textures	textures;
@@ -98,36 +110,36 @@ void	init_game(t_game *game);
 int		input_checker(char *input);
 
 //parser
-int	 skip_spaces(char *line);
-int	 handle_line(t_game *game, int fd, char *line);
+int		skip_spaces(char *line);
+int		handle_line(t_game *game, int fd, char *line);
 void	parser(t_game *game, char *filename);
 
 //color_parser
-int	color_parser(t_game *game, char *line);
+int		color_parser(t_game *game, char *line);
 
 //texture_parser
-int 	texture_parser(t_game *game, char *line);
+int		texture_parser(t_game *game, char *line);
 
 // map_parser
-int	 map_parser(t_game *game, int fd, char *line);
-int	 map_to_array(t_game *game, t_list *map_lines, int width, int height);
+int		map_parser(t_game *game, int fd, char *line);
+int		map_to_array(t_game *game, t_list *map_lines, int width, int height);
 
 // validate_map
-int	 validate_map(t_game *game);
+int		validate_map(t_game *game);
 
 // map_utils
 void	normalize_map(char *dest, const char *src, int width);
 void	set_player_direction(t_game *game, int i, int j);
 
 // events
-int	 handle_keypress(int keysym, t_game *game);
-int	 handle_keyrelease(int keysym, t_player *player);
-int	 close_window(t_game *game);
+int		handle_keypress(int keysym, t_game *game);
+int		handle_keyrelease(int keysym, t_player *player);
+int		close_window(t_game *game);
 void	handle_movement(t_game *game);
 void	rotate_player(t_player *player, double rot_speed);
 
 // render
-int	 render_frame(t_game *game);
+int		render_frame(t_game *game);
 void	raycast(t_game *game);
 
 // clean
