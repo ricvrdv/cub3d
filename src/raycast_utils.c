@@ -23,7 +23,7 @@ void	init_raycast(t_raycast *raycast, t_player *player, t_game *game)
 void	init_dda(t_raycast *raycast, t_player *player, int x)
 {
 	double	camera_x;
-	
+
 	camera_x = 2 * x / (double)WIN_WIDTH - 1;
 	raycast->ray_dir_x = player->dir_x + player->plane_x * camera_x;
 	raycast->ray_dir_y = player->dir_y + player->plane_y * camera_x;
