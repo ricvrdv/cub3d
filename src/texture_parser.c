@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture_parser.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddo-carm <ddo-carm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/27 13:13:07 by ddo-carm          #+#    #+#             */
+/*   Updated: 2025/09/27 13:13:37 by ddo-carm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static int path_valid(char *line)
+static int	path_valid(char *line)
 {
 	char	**split;
 	char	*last;
@@ -28,7 +40,7 @@ static int path_valid(char *line)
 	return (free_arrays((void **)split), 0);
 }
 
-static int path_exists(char *line)
+static int	path_exists(char *line)
 {
 	char	*path;
 	char	*clean_path;

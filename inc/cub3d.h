@@ -6,7 +6,7 @@
 /*   By: ddo-carm <ddo-carm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 12:37:26 by ddo-carm          #+#    #+#             */
-/*   Updated: 2025/09/27 12:38:37 by ddo-carm         ###   ########.fr       */
+/*   Updated: 2025/09/27 12:55:41 by ddo-carm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,13 @@ void	init_game(t_game *game);
 int		input_checker(char *input);
 
 //parser
-int		skip_spaces(char *line);
 int		handle_line(t_game *game, int fd, char *line);
 void	parser(t_game *game, char *filename);
+
+//parser_utils
+void	finish_file_reading(int fd);
+int		skip_spaces(char *line);
+void	clean_gnl(t_game *game, char *clean_line, int fd);
 
 //color_parser
 int		color_parser(t_game *game, char *line);

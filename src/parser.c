@@ -1,41 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddo-carm <ddo-carm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/27 12:44:45 by ddo-carm          #+#    #+#             */
+/*   Updated: 2025/09/27 12:59:45 by ddo-carm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
-
-int skip_spaces(char *line)
-{
-	int i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (ft_is_space(line[i]))
-			i++;
-		else
-			return (i);
-	}
-	return (-1);
-}
 
 static int	is_map_line(const char *line)
 {
-    int i;
-    int has_map_content;
+	int	i;
+	int	has_map_content;
 
-    has_map_content = 0;
-    if (!line || line[0] == '\0')
-        return (0);
-    i = 0;
-    while (line[i])
-    {
-        if (!ft_strchr(" 01NSEW", line[i]))
-            return (0);
-        if (ft_strchr("01NSEW", line[i]))
-            has_map_content = 1;
-        i++;
-    }
-    return (has_map_content);
+	has_map_content = 0;
+	if (!line || line[0] == '\0')
+		return (0);
+	i = 0;
+	while (line[i])
+	{
+		if (!ft_strchr(" 01NSEW", line[i]))
+			return (0);
+		if (ft_strchr("01NSEW", line[i]))
+			has_map_content = 1;
+		i++;
+	}
+	return (has_map_content);
 }
 
-static int check_missing_elem(t_game *game)
+static int	check_missing_elem(t_game *game)
 {
 	if (!game->ceiling.id)
 		return (1);
@@ -53,7 +50,7 @@ static int check_missing_elem(t_game *game)
 		return (0);
 }
 
-int handle_line(t_game *game, int fd, char *line)
+int	handle_line(t_game *game, int fd, char *line)
 {
 	int	i;
 
@@ -72,7 +69,7 @@ int handle_line(t_game *game, int fd, char *line)
 			return (-1);
 		}
 		if (!is_map_line(line))
-			return(-1);
+			return (-1);
 		if (!map_parser(game, fd, line))
 			return (-1);
 		return (1);
@@ -80,25 +77,35 @@ int handle_line(t_game *game, int fd, char *line)
 	return (0);
 }
 
-static void	finish_file_reading(int fd)
+static void	read_line(t_game *game, char *line, int fd)
 {
-	char	*line;
+	char	*clean_line;
+	int		ret;
 
-	line = get_next_line(fd);
 	while (line)
 	{
+		clean_line = ft_strtrim(line, "\n\r");
 		free(line);
-		line = get_next_line(fd);
+		ret = handle_line(game, fd, clean_line);
+		if (ret)
+		{
+			if (ret == -1)
+				clean_gnl(game, clean_line, fd);
+			free(clean_line);
+			break ;
+		}
+		else
+		{
+			free(clean_line);
+			line = get_next_line(fd);
+		}
 	}
-	close (fd);
 }
 
-void parser(t_game *game, char *filename)
+void	parser(t_game *game, char *filename)
 {
-	int 	fd;
-	int		ret;
-	char 	*line;
-	char	*clean_line;
+	int		fd;
+	char	*line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -109,29 +116,7 @@ void parser(t_game *game, char *filename)
 		close(fd);
 		handle_error(game, "Map file is empty\n", 1);
 	}
-	while (line)
-	{
-		clean_line = ft_strtrim(line, "\n\r");
-		free(line);
-		ret = handle_line(game, fd, clean_line);
-		if (ret)
-		{
-			if (ret == -1)
-			{
-				free(clean_line);
-				finish_file_reading(fd);
-				clean_game(game);
-				exit(EXIT_FAILURE);
-			}
-			free(clean_line);
-			break ;
-		}
-		else
-		{
-			free(clean_line);
-			line = get_next_line(fd);
-		}
-	}
+	read_line(game, line, fd);
 	close(fd);
 	if (check_missing_elem(game))
 		handle_error(game, "File is missing elements\n", 1);
