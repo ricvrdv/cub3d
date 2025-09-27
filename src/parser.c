@@ -108,7 +108,7 @@ void	parser(t_game *game, char *filename)
 	char	*line;
 
 	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	if (fd == -1 || ft_is_directory(filename))
 		return (handle_error(game, "Opening file failed\n", 1));
 	line = get_next_line(fd);
 	if (!line)
