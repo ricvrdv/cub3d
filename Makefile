@@ -32,6 +32,7 @@ SRC = $(SRCS_D)/main.c \
 	$(SRCS_D)/init.c \
 	$(SRCS_D)/render.c \
 	$(SRCS_D)/events.c \
+	$(SRCS_D)/movement.c \
 	$(SRCS_D)/parser.c \
 	$(SRCS_D)/parser_utils.c \
 	$(SRCS_D)/color_parser.c \

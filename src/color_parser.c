@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_parser.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rjesus-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/27 12:39:49 by rjesus-d          #+#    #+#             */
+/*   Updated: 2025/09/27 12:39:52 by rjesus-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static int rgb_checker(char **line, int index)
+static int	rgb_checker(char **line, int index)
 {
-	int value;
+	int	value;
 
 	value = ft_atoi(*line);
 	while (ft_isdigit(**line))
@@ -27,9 +39,9 @@ static int rgb_checker(char **line, int index)
 	return (value);
 }
 
-int color_parser(t_game *game, char *line)
+int	color_parser(t_game *game, char *line)
 {
-	t_colors *target;
+	t_colors	*target;
 
 	if (*line == 'F' && !game->floor.id)
 		target = &game->floor;
