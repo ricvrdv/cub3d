@@ -55,12 +55,12 @@ static int  check_player_count(int player_count)
 {
     if (player_count == 0)
     {
-        ft_dprintf(2, "Error\nNo player starting position found.\n");
+        ft_dprintf(2, "Error\nNo player starting position found\n");
         return (0);
     }
     if (player_count > 1)
     {
-        ft_dprintf(2, "Error\nMultiple player starting positions found.\n");
+        ft_dprintf(2, "Error\nMultiple player starting positions found\n");
         return (0);
     }
     return (1);
@@ -71,7 +71,7 @@ static int  validate_chars(t_game *game, t_point *p, int *player_count)
     if (!ft_strchr("01NSWEX", game->grid[p->i][p->j]))
     {
         ft_dprintf(2, "Error\n");
-        ft_dprintf(2, "Invalid char '%c' in map.\n", game->grid[p->i][p->j]);
+        ft_dprintf(2, "Invalid char '%c' in map\n", game->grid[p->i][p->j]);
         return (0);
     }
     if (ft_strchr("NSWE", game->grid[p->i][p->j]))
@@ -109,7 +109,7 @@ int  validate_map(t_game *game)
         return (0);
     if (!is_map_closed(game))
     {
-        ft_dprintf(2, "Error\nMap is not closed.\n");
+        ft_dprintf(2, "Error\nMap is not closed\n");
         return (0);
     }
     return (1);

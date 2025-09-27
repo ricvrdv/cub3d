@@ -14,14 +14,10 @@ static void load_from_path(t_game *game, t_img *texture, char *path)
         &texture->width, &texture->height);
     if (!texture->img_ptr)
     {
-        handle_error(game, "Failed to load texture.", 1);
+        handle_error(game, "Failed to load texture\n", 1);
     }
     texture->addr = mlx_get_data_addr(texture->img_ptr, &texture->bits_per_pixel,
         &texture->line_length, &texture->endian);
-    if (!texture->addr)
-    {
-        ft_printf("No addr\n");
-    }
 }
 
 void    load_textures(t_game *game)

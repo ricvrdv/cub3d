@@ -107,7 +107,7 @@ void parser(t_game *game, char *filename)
 	if (!line)
 	{
 		close(fd);
-		handle_error(game, "Map file is empty.\n", 1);
+		handle_error(game, "Map file is empty\n", 1);
 	}
 	while (line)
 	{
