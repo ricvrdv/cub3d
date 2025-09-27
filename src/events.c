@@ -58,23 +58,23 @@ void handle_movement(t_game *game)
 	rotSpeed = 0;
     if (player->key_w)
 	{
-		moveX += player->dirX * player->move_speed;
-		moveY += player->dirY * player->move_speed;
+		moveX += player->dir_x * player->move_speed;
+		moveY += player->dir_y * player->move_speed;
 	}
     if (player->key_s)
 	{
-		moveX -= player->dirX * player->move_speed;
-		moveY -= player->dirY * player->move_speed;
+		moveX -= player->dir_x * player->move_speed;
+		moveY -= player->dir_y * player->move_speed;
 	}
     if (player->key_a)
 	{
-		moveX += player->dirY * player->move_speed;
-		moveY -= player->dirX * player->move_speed;
+		moveX += player->dir_y * player->move_speed;
+		moveY -= player->dir_x * player->move_speed;
 	}
     if (player->key_d)
 	{
-		moveX -= player->dirY * player->move_speed;
-		moveY += player->dirX * player->move_speed;
+		moveX -= player->dir_y * player->move_speed;
+		moveY += player->dir_x * player->move_speed;
 	}
     if (player->key_left) 
 		rotSpeed -= player->rot_speed;
@@ -96,10 +96,10 @@ void	rotate_player(t_player *player, double rot_speed)
 	double  oldDirX;
     double  oldPlaneX;
 
-    oldDirX = player->dirX;
-	player->dirX = player->dirX * cos(rot_speed) - player->dirY * sin(rot_speed);
-	player->dirY = oldDirX * sin(rot_speed) + player->dirY * cos(rot_speed);
-	oldPlaneX = player->planeX;
-	player->planeX = player->planeX * cos(rot_speed) - player->planeY * sin(rot_speed);
-	player->planeY = oldPlaneX * sin(rot_speed) + player->planeY * cos(rot_speed);
+    oldDirX = player->dir_x;
+	player->dir_x = player->dir_x * cos(rot_speed) - player->dir_y * sin(rot_speed);
+	player->dir_y = oldDirX * sin(rot_speed) + player->dir_y * cos(rot_speed);
+	oldPlaneX = player->plane_x;
+	player->plane_x = player->plane_x * cos(rot_speed) - player->plane_y * sin(rot_speed);
+	player->plane_y = oldPlaneX * sin(rot_speed) + player->plane_y * cos(rot_speed);
 }

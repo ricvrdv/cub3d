@@ -73,8 +73,8 @@ void    raycast(t_game *game)
 
 
     player = &game->player;
-    player->planeX = 0.66 * -game->player.dirY;
-    player->planeY = 0.66 * game->player.dirX;
+    player->plane_x = 0.66 * -game->player.dir_y;
+    player->plane_y = 0.66 * game->player.dir_x;
     pos_x = player->position.x / TILE_SIZE;
     pos_y = player->position.y / TILE_SIZE;
     x = 0;
@@ -82,8 +82,8 @@ void    raycast(t_game *game)
     {
         //DDA
         camera_x = 2 * x / (double)WIN_WIDTH - 1;
-        ray_dir_x = player->dirX + player->planeX * camera_x;
-        ray_dir_y = player->dirY + player->planeY * camera_x;
+        ray_dir_x = player->dir_x + player->plane_x * camera_x;
+        ray_dir_y = player->dir_y + player->plane_y * camera_x;
         map_x = (int)pos_x;
         map_y = (int)pos_y;
         if (ray_dir_x == 0)

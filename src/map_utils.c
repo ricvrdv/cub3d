@@ -24,23 +24,23 @@ void set_player_direction(t_game *game, int i, int j)
 {
     if (game->grid[i][j] == 'N')
     {
-        game->player.dirX = 0;
-        game->player.dirY = -1;
+        game->player.dir_x = 0;
+        game->player.dir_y = -1;
     }
     else if (game->grid[i][j] == 'S')
     {
-        game->player.dirX = 0;
-        game->player.dirY = 1;
+        game->player.dir_x = 0;
+        game->player.dir_y = 1;
     }
     else if (game->grid[i][j] == 'W')
     {
-        game->player.dirX = -1;
-        game->player.dirY = 0;
+        game->player.dir_x = -1;
+        game->player.dir_y = 0;
     }
     else
     {
-        game->player.dirX = 1;
-        game->player.dirY = 0;
+        game->player.dir_x = 1;
+        game->player.dir_y = 0;
     }
 }
 
