@@ -5,7 +5,7 @@
 - `inc`: Contains the header file `cub3d.h` and the `libft` custom library.
 - `test`: Contains valid and invalid maps to pass as argument when running the program.
 - `textures`: Contains `.xpm` files to be used by the program to render the map walls.
-- `Makefile`: Tells `make` how to compile and link a program.
+- `Makefile`: Tells `make` how to compile and link the program.
 - `README.md`: Project overview and usage instructions.
 
 ### USAGE
