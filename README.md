@@ -1,5 +1,13 @@
 # 42 - CUB3D
 
+### REPOSITORY STRUCTURE
+- `src`: Contains the source files for the program.
+- `inc`: Contains the header file `cub3d.h` and the `libft` custom library.
+- `test`: Contains valid and invalid maps to pass as argument when running the program.
+- `textures`: Contains `.xpm` files to be used by the program to render the map walls.
+- `Makefile`: Tells `make` how to compile and link a program.
+- `README.md`: Project overview and usage instructions.
+
 ### USAGE
 1. **Compile the program**
 ```bash
