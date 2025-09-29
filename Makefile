@@ -6,7 +6,7 @@
 #    By: ddo-carm <ddo-carm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/10 17:05:56 by ddo-carm          #+#    #+#              #
-#    Updated: 2025/09/27 15:23:02 by ddo-carm         ###   ########.fr        #
+#    Updated: 2025/09/29 10:40:54 by rjesus-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,18 +30,18 @@ INCLUDES = ./inc
 #source files
 SRC = $(SRCS_D)/main.c \
 	$(SRCS_D)/init.c \
-	$(SRCS_D)/render.c \
-	$(SRCS_D)/raycast.c \
-	$(SRCS_D)/raycast_utils.c \
-	$(SRCS_D)/events.c \
-	$(SRCS_D)/movement.c \
-	$(SRCS_D)/parser.c \
-	$(SRCS_D)/parser_utils.c \
-	$(SRCS_D)/color_parser.c \
-	$(SRCS_D)/texture_parser.c \
-	$(SRCS_D)/map_parser.c \
-	$(SRCS_D)/validate_map.c \
-	$(SRCS_D)/map_utils.c \
+	$(SRCS_D)/raycast/render.c \
+	$(SRCS_D)/raycast/raycast.c \
+	$(SRCS_D)/raycast/raycast_utils.c \
+	$(SRCS_D)/events/events.c \
+	$(SRCS_D)/events/movement.c \
+	$(SRCS_D)/parser/parser.c \
+	$(SRCS_D)/parser/parser_utils.c \
+	$(SRCS_D)/parser/color_parser.c \
+	$(SRCS_D)/parser/texture_parser.c \
+	$(SRCS_D)/parser/map_parser.c \
+	$(SRCS_D)/parser/validate_map.c \
+	$(SRCS_D)/parser/map_utils.c \
 	$(SRCS_D)/clean.c \
 	$(SRCS_D)/utils.c
 
