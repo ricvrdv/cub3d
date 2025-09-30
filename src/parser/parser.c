@@ -23,9 +23,9 @@ static int	is_map_line(const char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (!ft_strchr(" 01NSEW", line[i]))
+		if (!ft_strchr(" 01NSEWDO", line[i]))
 			return (0);
-		if (ft_strchr("01NSEW", line[i]))
+		if (ft_strchr("01NSEWDO", line[i]))
 			has_map_content = 1;
 		i++;
 	}
@@ -59,7 +59,7 @@ int	handle_line(t_game *game, int fd, char *line)
 		return (0);
 	if (ft_strchr("FC", line[i]))
 		return (color_parser(game, line + i));
-	else if (ft_strchr("NSWE", line[i]))
+	else if (ft_strchr("NSWEDO", line[i]))
 		return (texture_parser(game, line + i));
 	else if (line[i] == '1')
 	{

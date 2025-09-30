@@ -27,6 +27,8 @@ int	handle_keypress(int keysym, t_game *game)
 		player->key_s = true;
 	else if (keysym == XK_D || keysym == XK_d)
 		player->key_d = true;
+	else if (keysym == XK_K || keysym == XK_k)
+		toggle_door(game, &game->player);
 	else if (keysym == XK_Left)
 		player->key_left = true;
 	else if (keysym == XK_Right)

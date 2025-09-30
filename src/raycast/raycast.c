@@ -32,7 +32,9 @@ static void	decision_maker(t_raycast *raycast, t_game *game,
 			raycast->map_y += *step_y;
 			raycast->side = 1;
 		}
-		if (game->grid[raycast->map_y][raycast->map_x] == '1')
+		if (game->grid[raycast->map_y][raycast->map_x] == '1'
+				|| game->grid[raycast->map_y][raycast->map_x] == 'D'
+				|| game->grid[raycast->map_y][raycast->map_x] == 'O')
 			hit = 1;
 	}
 }
@@ -94,7 +96,11 @@ static double	draw_wall_line(t_raycast *raycast)
 
 static void	project_texture(t_raycast *raycast, t_game *game, double wall_x)
 {
-	if (raycast->side == 1)
+	if (game->grid[raycast->map_y][raycast->map_x] == 'D')
+		raycast->current_tex = game->textures.door_closed;
+	else if (game->grid[raycast->map_y][raycast->map_x] == 'O')
+    	raycast->current_tex = game->textures.door_open;
+	else if (raycast->side == 1)
 	{
 		if (raycast->ray_dir_y > 0)
 			raycast->current_tex = game->textures.south;

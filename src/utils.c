@@ -40,6 +40,21 @@ void	load_textures(t_game *game)
 	load_from_path(game, &texture->south, texture->so_path);
 	load_from_path(game, &texture->west, texture->we_path);
 	load_from_path(game, &texture->east, texture->ea_path);
+	texture->door_closed.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+		"textures/closed.xpm", &texture->door_closed.width, &texture->door_closed.height);
+	if (!texture->door_closed.img_ptr)
+		handle_error(game, "Failed to load texture\n", 1);
+	texture->door_closed.addr = mlx_get_data_addr(texture->door_closed.img_ptr,
+			&texture->door_closed.bits_per_pixel, &texture->door_closed.line_length,
+			&texture->door_closed.endian);
+			
+	texture->door_open.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+		"textures/open.xpm", &texture->door_open.width, &texture->door_open.height);
+	if (!texture->door_open.img_ptr)
+		handle_error(game, "Failed to load texture\n", 1);
+	texture->door_open.addr = mlx_get_data_addr(texture->door_open.img_ptr,
+			&texture->door_open.bits_per_pixel, &texture->door_open.line_length,
+			&texture->door_open.endian);
 }
 
 void	put_pixel(t_img *img, int x, int y, int color)

@@ -80,7 +80,7 @@ static int	check_player_count(int player_count)
 
 static int	validate_chars(t_game *game, t_point *p, int *player_count)
 {
-	if (!ft_strchr("01NSWEX", game->grid[p->i][p->j]))
+	if (!ft_strchr("01NSWEXDO", game->grid[p->i][p->j]))
 	{
 		ft_dprintf(2, "Error\n");
 		ft_dprintf(2, "Invalid char '%c' in map\n", game->grid[p->i][p->j]);
