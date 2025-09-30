@@ -15,7 +15,7 @@
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
-# define TILE_SIZE 32
+# define TILE_SIZE 128
 
 # include <stdlib.h>
 # include <unistd.h>
