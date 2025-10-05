@@ -1,5 +1,25 @@
 # 42 - CUB3D
 
+### SUMMARY
+Cub3D is a 3D graphics project inspired by Wolfenstein 3D, developed using the MiniLibX graphics library.
+
+It introduces the fundamentals of computer graphics and real-time rendering through the [raycasting technique](https://lodev.org/cgtutor/raycasting.html) — a simplified yet powerful way to simulate 3D perspectives in a 2D world.
+
+Built entirely from scratch in C, this project bridges the gap between mathematical theory and practical graphical application.
+
+This project was developed collaboratively by me and [Daniela Padilha](https://github.com/Daniela-Padilha) as part of the 42 School curriculum.
+
+### OBJECTIVE
+Build a first-person 3D engine capable of:
+- Rendering a 3D environment based on a 2D map using raycasting.
+- Displaying textured walls, floors, and ceilings.
+- Handling player movement (forward, backward, strafe) and rotation.
+- Supporting collision detection with walls and interactive elements (like doors).
+- Parsing a configuration file (.cub) that defines:
+  - Map layout
+  - Wall textures (North, South, East, West)
+  - Floor and ceiling colors
+
 ### REPOSITORY STRUCTURE
 - `src`: Contains the source files for the program.
 - `inc`: Contains the header file `cub3d.h` and the `libft` custom library.
