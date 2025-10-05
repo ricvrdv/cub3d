@@ -20,6 +20,21 @@ Build a first-person 3D engine capable of:
   - Wall textures (North, South, East, West)
   - Floor and ceiling colors
 
+### KEY FEATURES
+🧭 Raycasting engine using DDA (Digital Differential Analyzer) algorithm
+
+🧍 Player controls: move (W, A, S, D), rotate (←, →)
+
+🗺️ Custom map parser from .cub files
+
+🧱 Textured walls (North, South, East, West)
+
+🚪 Interactive doors — toggle open/close with a keypress (K)
+
+🎨 Floor & ceiling color rendering
+
+🪟 MiniLibX window rendering with pixel-perfect drawing
+
 ### REPOSITORY STRUCTURE
 - `src`: Contains the source files for the program.
 - `inc`: Contains the header file `cub3d.h` and the `libft` custom library.
