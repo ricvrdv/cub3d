@@ -57,10 +57,14 @@ void	handle_movement(t_game *game)
 	if (move_x != 0 || move_y != 0)
 	{
 		if (game->grid[(int)(player->position.y / TILE_SIZE)]
-			[(int)(player->position.x / TILE_SIZE + move_x)] != '1')
+			[(int)(player->position.x / TILE_SIZE + move_x)] != '1'
+			&& game->grid[(int)(player->position.y / TILE_SIZE)]
+			[(int)(player->position.x / TILE_SIZE + move_x)] != 'D')
 			player->position.x += move_x * TILE_SIZE;
 		if (game->grid[(int)(player->position.y / TILE_SIZE + move_y)]
-			[(int)(player->position.x / TILE_SIZE)] != '1')
+			[(int)(player->position.x / TILE_SIZE)] != '1'
+			&& game->grid[(int)(player->position.y / TILE_SIZE + move_y)]
+			[(int)(player->position.x / TILE_SIZE)] != 'D')
 			player->position.y += move_y * TILE_SIZE;
 	}
 }
@@ -80,4 +84,22 @@ void	rotate_player(t_player *player, double rot_speed)
 		- player->plane_y * sin(rot_speed);
 	player->plane_y = old_plane_x * sin(rot_speed)
 		+ player->plane_y * cos(rot_speed);
+}
+
+void toggle_door(t_game *game, t_player *player)
+{
+	int	tx;
+    int	ty;
+
+	tx = (int)((player->position.x + player->dir_x * TILE_SIZE * 1.5)
+		/ TILE_SIZE);
+	ty = (int)((player->position.y + player->dir_y * TILE_SIZE * 1.5)
+		/ TILE_SIZE);
+    if (tx >= 0 && ty >= 0 && ty < game->map_height && tx < game->map_width)
+    {
+        if (game->grid[ty][tx] == 'D')
+            game->grid[ty][tx] = 'O';
+        else if (game->grid[ty][tx] == 'O')
+            game->grid[ty][tx] = 'D';
+    }
 }

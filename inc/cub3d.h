@@ -15,7 +15,7 @@
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
-# define TILE_SIZE 32
+# define TILE_SIZE 256
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -102,6 +102,8 @@ typedef struct s_textures
 	t_img	south;
 	t_img	west;
 	t_img	east;
+	t_img	door_open;
+	t_img	door_closed;
 }	t_textures;
 
 typedef struct s_colors
@@ -165,6 +167,7 @@ int		handle_keyrelease(int keysym, t_player *player);
 int		close_window(t_game *game);
 void	handle_movement(t_game *game);
 void	rotate_player(t_player *player, double rot_speed);
+void	toggle_door(t_game *game, t_player *player);
 
 //raycast
 void	raycast(t_game *game, int color);
