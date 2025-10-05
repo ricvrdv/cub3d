@@ -33,6 +33,7 @@ SRC = $(SRCS_D)/main.c \
 	$(SRCS_D)/raycast/render.c \
 	$(SRCS_D)/raycast/raycast.c \
 	$(SRCS_D)/raycast/raycast_utils.c \
+	$(SRCS_D)/raycast/minimap.c \
 	$(SRCS_D)/events/events.c \
 	$(SRCS_D)/events/movement.c \
 	$(SRCS_D)/parser/parser.c \
