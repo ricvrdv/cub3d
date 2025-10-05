@@ -16,6 +16,8 @@
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
 # define TILE_SIZE 256
+# define MINIMAP_SCALE 0.2 // 20% of actual map size on screen
+# define MINIMAP_TILE 8    // each map tile = 8×8 pixels on minimap
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -131,23 +133,23 @@ typedef struct s_game
 	t_raycast	raycast;
 }	t_game;
 
-//	init
+// init
 void	init_game(t_game *game);
 int		input_checker(char *input);
 
-//parser
+// parser
 int		handle_line(t_game *game, int fd, char *line);
 void	parser(t_game *game, char *filename);
 
-//parser_utils
+// parser_utils
 void	finish_file_reading(int fd);
 int		skip_spaces(char *line);
 void	clean_gnl(t_game *game, char *clean_line, int fd);
 
-//color_parser
+// color_parser
 int		color_parser(t_game *game, char *line);
 
-//texture_parser
+// texture_parser
 int		texture_parser(t_game *game, char *line);
 
 // map_parser
@@ -169,16 +171,19 @@ void	handle_movement(t_game *game);
 void	rotate_player(t_player *player, double rot_speed);
 void	toggle_door(t_game *game, t_player *player);
 
-//raycast
+// raycast
 void	raycast(t_game *game, int color);
 
-//raycast_utils
+// raycast_utils
 void	init_raycast(t_raycast *raycast, t_player *player, t_game *game);
 void	init_dda(t_raycast *raycast, t_player *player, int x);
 
 // render
 int		render_frame(t_game *game);
 int		get_texture_pixel(t_img *texture, int x, int y);
+
+// minimap
+void	draw_minimap(t_game *game);
 
 // clean
 void	clean_game(t_game *game);
