@@ -38,7 +38,7 @@ Build a first-person 3D engine capable of:
 ### REPOSITORY STRUCTURE
 - `src`: Contains the source files for the program.
 - `inc`: Contains the header file `cub3d.h` and the `libft` custom library.
-- `test`: Contains valid and invalid maps to pass as argument when running the program.
+- `maps`: Contains maps to pass as argument when running the program and a `test/` directory with valid and invalid maps to test.
 - `textures`: Contains `.xpm` files to be used by the program to render the map walls.
 - `Makefile`: Tells `make` how to compile and link the program.
 - `README.md`: Project overview and usage instructions.
