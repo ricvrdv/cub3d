@@ -9,6 +9,10 @@ Built entirely from scratch in C, this project bridges the gap between mathemati
 
 This project was developed collaboratively by me and [Daniela Padilha](https://github.com/Daniela-Padilha) as part of the 42 School curriculum.
 
+<p align="center">
+  <img src="https://github.com/ricvrdv/cub3d/blob/main/cub3d.gif" alt="Game snippet"
+</p>
+
 ### OBJECTIVE
 Build a first-person 3D engine capable of:
 - Rendering a 3D environment based on a 2D map using raycasting.
