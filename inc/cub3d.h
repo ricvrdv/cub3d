@@ -13,11 +13,11 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIN_WIDTH 1280
-# define WIN_HEIGHT 720
+# define WIN_WIDTH 1024
+# define WIN_HEIGHT 768
 # define TILE_SIZE 256
-# define MINIMAP_SCALE 0.2 // 20% of actual map size on screen
-# define MINIMAP_TILE 8    // each map tile = 8×8 pixels on minimap
+# define MINIMAP_SCALE 0.2
+# define MINIMAP_TILE 8
 
 # include <stdlib.h>
 # include <unistd.h>
