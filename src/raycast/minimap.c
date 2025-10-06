@@ -23,7 +23,7 @@ static void	draw_tile(t_game *game, t_point map, int color, int tile)
 
 static int	get_tile_color(char cell)
 {
-	if (cell == '1')
+	if (cell == '1' || cell == 'X')
 		return (0x555555);
 	else if (cell == 'D')
 		return (0x964B00);
