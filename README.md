@@ -63,5 +63,10 @@ make
 ./cub3d /test/invalid/<invalid map file>
 ```
 
+### TEXTURES ATTRIBUTION
+Wall textures: Torment Textures by Bradley D. (https://strideh.itch.io)
+
+Door texture: Delven Textures by Bradley D. (https://strideh.itch.io)
+
 ----
 🐸 Feel free to fork, clone, or contact me for questions or feedback. 
