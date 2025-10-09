@@ -6,7 +6,7 @@
 /*   By: rjesus-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 12:52:55 by rjesus-d          #+#    #+#             */
-/*   Updated: 2025/09/27 12:52:58 by rjesus-d         ###   ########.fr       */
+/*   Updated: 2025/10/09 17:01:02 by rjesus-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_game(t_game *game)
 	load_textures(game);
 	game->floor_color = rgb_to_int(game->floor);
 	game->ceiling_color = rgb_to_int(game->ceiling);
-	game->player.move_speed = 0.05;
+	game->player.move_speed = 0.04;
 	game->player.rot_speed = 0.04;
 }
 

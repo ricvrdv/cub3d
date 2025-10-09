@@ -48,6 +48,10 @@ static void	destroy_textures(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->textures.west.img_ptr);
 	if (game->textures.east.img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->textures.east.img_ptr);
+	if (game->textures.door_open.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->textures.door_open.img_ptr);
+	if (game->textures.door_closed.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->textures.door_closed.img_ptr);
 }
 
 void	clean_game(t_game *game)
